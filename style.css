@@ -1,7 +1,31 @@
-#game div {
-  border: 1px solid black;
-  width: 15%;
-  height: 200px;
-  margin: 10px;
-  display: inline-block;
+
+/* ////////////////////////HEADER////////////////////// */
+.header-container {
+  display: flex;
+}
+
+.header {
+  border: 1px solid red;
+  flex: 1;
+  width: 100px;
+  height: 100px;
+}
+
+/* ////////////////////////CARD CONTAINER///////////////////// */
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 150px);
+  grid-gap: 20px;
+  justify-content: center;
+  margin: 0 60px;
+  scroll-behavior: smooth;
+}
+
+.card-cover {
+  max-width: 150px;
+  min-width: 100px;
+  border-width: 10px;
+  border-style: solid;
+  border-color: white;
+  border-image: 3px solid;
 }
