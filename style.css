@@ -1,31 +1,61 @@
-
 /* ////////////////////////HEADER////////////////////// */
 .header-container {
   display: flex;
 }
 
 .header {
-  border: 1px solid red;
+  border: 1px solid blue;
   flex: 1;
   width: 100px;
   height: 100px;
 }
 
 /* ////////////////////////CARD CONTAINER///////////////////// */
-.card-container {
+/* .card-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, 150px);
   grid-gap: 20px;
   justify-content: center;
   margin: 0 60px;
   scroll-behavior: smooth;
+} */
+/*
+.card-container {
+  perspective: 700;
+} */
+
+.card-box {
+  position: relative;
+  margin: 20px;
+  width: 200px;
+  height: 200px;
+  transition: all 2s ease;
+  transform-style: preserve-3d;
+  color: #fff;
+  text-align: center;
+  line-height: 200px;
+  background: blue;
 }
 
-.card-cover {
-  max-width: 150px;
-  min-width: 100px;
-  border-width: 10px;
-  border-style: solid;
-  border-color: white;
-  border-image: 3px solid;
+.card-front {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 200px;
+  backface-visibility: hidden;
+}
+
+.card-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 200px;
+  backface-visibility: hidden;
+  transform: rotateY(180deg);
+}
+
+.card-box:hover {
+  transform: rotateY(180deg);
 }
