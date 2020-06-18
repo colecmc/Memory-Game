@@ -11,30 +11,24 @@
 }
 
 /* ////////////////////////CARD CONTAINER///////////////////// */
-/* .card-container {
+.card-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, 150px);
-  grid-gap: 20px;
+  grid-gap: 50px;
   justify-content: center;
-  margin: 0 60px;
-  scroll-behavior: smooth;
-} */
-/*
-.card-container {
-  perspective: 700;
-} */
+}
 
 .card-box {
   position: relative;
   margin: 20px;
   width: 200px;
   height: 200px;
-  transition: all 2s ease;
+  transition: all 0.5s ease;
   transform-style: preserve-3d;
   color: #fff;
   text-align: center;
   line-height: 200px;
-  background: blue;
+  /* background: blue; */
 }
 
 .card-front {
@@ -43,6 +37,8 @@
   left: 0;
   width: 200px;
   height: 200px;
+  clip-path: inset(20px);
+  background: blue;
   backface-visibility: hidden;
 }
 
@@ -52,6 +48,7 @@
   left: 0;
   width: 200px;
   height: 200px;
+  clip-path: inset(20px);
   backface-visibility: hidden;
   transform: rotateY(180deg);
 }
