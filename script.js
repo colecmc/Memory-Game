@@ -2,6 +2,7 @@ let cardContainer = document.querySelector(".card-container");
 
 let isTwoShowing = false;
 let pair = [];
+let highScore = 0;
 
 cardContainer.addEventListener("click", function (e) {
   let card = e.target;
@@ -25,30 +26,25 @@ cardContainer.addEventListener("click", function (e) {
       card.parentElement.classList.toggle("flip");
       clearInterval(timer);
     }, 1000);
-  }
-
-  if (
+    pair = [];
+  } else if (
     pair[0] === pair[1] &&
     pair[0] !== "undefined" &&
     pair[1] !== "undefined"
   ) {
-    console.log("pair 0 equals pair 1");
-    console.log(`dataKey: ${dataNick}, pair: ${pair[0]} ${pair[1]}`);
-  }
-
-  if (pair.length >= 2) {
     pair = [];
+    highScore++;
   }
 
   // let card = $(`.card-front[data-key="${ dataKey }"]`);
   // console.log(card);
 
-  isTwoShowing = false;
-
-  let timer = setInterval(function () {
-    card.parentElement.classList.toggle("flip");
-    clearInterval(timer);
-  }, 1000);
+  // isTwoShowing = false;
+  //
+  // let timer = setInterval(function () {
+  //   card.parentElement.classList.toggle("flip");
+  //   clearInterval(timer);
+  // }, 1000);
 });
 
 ///////////////////////////////////////////////////////////////
