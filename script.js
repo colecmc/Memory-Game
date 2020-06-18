@@ -13,6 +13,8 @@ cardContainer.addEventListener("click", function (e) {
 
   if (name === "container" && dataNick === undefined) {
     return;
+  } else if (name === "box" && dataNick === undefined) {
+    return;
   }
 
   if (pair.length === 0) {
@@ -38,6 +40,7 @@ cardContainer.addEventListener("click", function (e) {
       secondCard.classList.toggle("flip");
       clearInterval(timer);
     }, 1000);
+    console.log("loosing: " + pair);
     pair = [];
   } else if (
     pair[0] === pair[1] &&
@@ -56,9 +59,9 @@ cardContainer.addEventListener("click", function (e) {
     pair[0] !== "undefined" &&
     pair[1] !== "undefined"
   ) {
-    console.log(pair);
-    console.log(firstKey);
-    console.log(secondKey);
+    console.log("winning: " + pair);
+    // console.log(firstKey);
+    // console.log(secondKey);
     pair = [];
     highScore++;
     console.log(highScore);
