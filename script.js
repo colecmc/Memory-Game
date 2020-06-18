@@ -7,6 +7,7 @@ let secondCard;
 let firstKey;
 let secondKey;
 let count = 0;
+let isTwoTrue = false;
 
 cardContainer.addEventListener("click", function (e) {
   let dataNick = e.target.dataset.nick;
@@ -25,19 +26,50 @@ cardContainer.addEventListener("click", function (e) {
   // console.log(children);
   card.parentElement.setAttribute("data-fliped", "true");
 
+  /////////////////////////////////////////////////////////////////CONDITIONALS TO ONLY LET TWO BE SELECTED AT ONCE
+
+  let isTrueCount = 0;
+
   for (var child of children) {
     if (child.dataset.fliped === "true") {
-      count++;
-      console.log(count);
-    }
-
-    if (count > 2) {
-      return;
+      isTrueCount++;
     }
   }
-  console.log(count);
-  console.log("made it out of the loop");
-  count = 0;
+
+  if (isTrueCount >= 3) {
+    for (var child of children) {
+      // child.dataset.fliped === "false";
+      child.setAttribute("data-fliped", "false");
+      console.log(child.dataset);
+      console.log("changing data-flip to false");
+    }
+    console.log(children);
+    console.log(isTrueCount);
+    return;
+  }
+
+  /////////////////////////////////////////////////////////////////
+
+  // for (var child of children) {
+  //   if (child.dataset.fliped === "true") {
+  //     count++;
+  //     console.log(count);
+  //   }
+  //
+  //   if (count > 2) {
+  //     for (var child of children) {
+  //       child.setAttribute("data-fliped", "false");
+  //       console.log(child.dataset);
+  //       console.log("changing data-flip to false");
+  //     }
+  //     count = 0;
+  //     return;
+  //   }
+  // }
+  // console.log(count);
+  // console.log(children);
+  // console.log("made it out of the loop");
+  // count = 0;
 
   // if (card.parentElement.dataset.fliped === "true") {
   //   console.log("is true");
@@ -64,10 +96,17 @@ cardContainer.addEventListener("click", function (e) {
     let timer = setInterval(function () {
       firstCard.classList.toggle("flip");
       secondCard.classList.toggle("flip");
+
+      for (var child of children) {
+        child.setAttribute("data-fliped", "false");
+        console.log(child.dataset);
+        console.log("changing data-flip to false");
+      }
+      console.log(children);
+      pair = [];
+
       clearInterval(timer);
     }, 1000);
-    console.log("loosing: " + pair);
-    pair = [];
   } else if (
     pair[0] === pair[1] &&
     pair[0] !== "undefined" &&
