@@ -6,16 +6,42 @@ let firstCard;
 let secondCard;
 let firstKey;
 let secondKey;
+let count = 0;
 
 cardContainer.addEventListener("click", function (e) {
   let dataNick = e.target.dataset.nick;
   let name = e.target.dataset.name;
+  let card = e.target;
 
   if (name === "container" && dataNick === undefined) {
     return;
   } else if (name === "box" && dataNick === undefined) {
     return;
   }
+
+  let parent = e.target.parentElement.parentElement;
+  let children = parent.children;
+
+  // console.log(children);
+  card.parentElement.setAttribute("data-fliped", "true");
+
+  for (var child of children) {
+    if (child.dataset.fliped === "true") {
+      count++;
+      console.log(count);
+    }
+
+    if (count > 2) {
+      return;
+    }
+  }
+  console.log(count);
+  console.log("made it out of the loop");
+  count = 0;
+
+  // if (card.parentElement.dataset.fliped === "true") {
+  //   console.log("is true");
+  // }
 
   if (pair.length === 0) {
     pair.push(dataNick);
