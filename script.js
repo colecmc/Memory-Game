@@ -134,11 +134,11 @@ startBtn.addEventListener("click", () => {
 //
 // ]
 
-let cardLoader = function (arg) {
+let cardLoader = function (e) {
   let inputs = "";
-  if (arg === "easy") {
-    console.log("easy button called");
-    for (var i = 1; i < 13; i++) {
+
+  if (e.target.classList.contains("easy")) {
+    for (var i = 1; i < 7; i++) {
       inputs += `<div class='card-box' data-name='box'>
         <div class='card-front' data-key='${i}' data-nick='nick-${i}'></div>
         <div class='card-back'>
@@ -146,8 +146,16 @@ let cardLoader = function (arg) {
         </div>
       </div>`;
     }
-  } else if (arg === "medium") {
-    for (var i = 1; i < 17; i++) {
+    for (var i = 1; i < 7; i++) {
+      inputs += `<div class='card-box' data-name='box'>
+        <div class='card-front' data-key='${i + 6}' data-nick='nick-${i}'></div>
+        <div class='card-back'>
+          <img src='images/${i}.png' alt='Photo of Nicholas Cage' />
+        </div>
+      </div>`;
+    }
+  } else if (e.target.classList.contains("medium")) {
+    for (var i = 1; i < 9; i++) {
       console.log("medium button called");
       inputs += `<div class='card-box' data-name='box'>
           <div class='card-front' data-key='${i}' data-nick='nick-${i}'></div>
@@ -156,11 +164,33 @@ let cardLoader = function (arg) {
           </div>
         </div>`;
     }
-  } else if (arg === "hard") {
-    for (var i = 1; i < 25; i++) {
+    for (var i = 1; i < 9; i++) {
+      console.log("medium button called");
+      inputs += `<div class='card-box' data-name='box'>
+          <div class='card-front' data-key='${
+            i + 8
+          }' data-nick='nick-${i}'></div>
+          <div class='card-back'>
+            <img src='images/${i}.png' alt='Photo of Nicholas Cage' />
+          </div>
+        </div>`;
+    }
+  } else if (e.target.classList.contains("hard")) {
+    for (var i = 1; i < 13; i++) {
       console.log("hard button called");
       inputs += `<div class='card-box' data-name='box'>
             <div class='card-front' data-key='${i}' data-nick='nick-${i}'></div>
+            <div class='card-back'>
+              <img src='images/${i}.png' alt='Photo of Nicholas Cage' />
+            </div>
+          </div>`;
+    }
+    for (var i = 1; i < 13; i++) {
+      console.log("hard button called");
+      inputs += `<div class='card-box' data-name='box'>
+            <div class='card-front' data-key='${
+              i + 12
+            }' data-nick='nick-${i}'></div>
             <div class='card-back'>
               <img src='images/${i}.png' alt='Photo of Nicholas Cage' />
             </div>
@@ -172,8 +202,8 @@ let cardLoader = function (arg) {
 };
 
 let easyBtn = document.querySelector(".easy");
-easyBtn.addEventListener("click", cardLoader("easy"));
+easyBtn.addEventListener("click", cardLoader);
 let mediumBtn = document.querySelector(".medium");
-mediumBtn.addEventListener("click", cardLoader("medium"));
+mediumBtn.addEventListener("click", cardLoader);
 let hardBtn = document.querySelector(".hard");
-mediumBtn.addEventListener("click", cardLoader("hard"));
+hardBtn.addEventListener("click", cardLoader);
