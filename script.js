@@ -139,7 +139,7 @@ let cardLoader = function (e) {
   let inputs = [];
 
   if (e.target.classList.contains("easy")) {
-    for (var i = 1; i < 7; i++) {
+    for (var i = 1; i < 5; i++) {
       inputs.push({
         task: `<div class='card-box' data-name='box'>
         <div class='card-front' data-key='${i}' data-nick='nick-${i}'></div>
@@ -149,7 +149,7 @@ let cardLoader = function (e) {
       </div>`,
       });
     }
-    for (var i = 1; i < 7; i++) {
+    for (var i = 1; i < 5; i++) {
       inputs.push({
         task: `<div class='card-box' data-name='box'>
         <div class='card-front' data-key='${i + 6}' data-nick='nick-${i}'></div>
@@ -159,48 +159,51 @@ let cardLoader = function (e) {
       </div>`,
       });
     }
-    console.log(inputs);
   } else if (e.target.classList.contains("medium")) {
     for (var i = 1; i < 9; i++) {
-      console.log("medium button called");
-      inputs += `<div class='card-box' data-name='box'>
+      inputs.push({
+        task: `<div class='card-box' data-name='box'>
           <div class='card-front' data-key='${i}' data-nick='nick-${i}'></div>
           <div class='card-back'>
             <img src='images/${i}.png' alt='Photo of Nicholas Cage' />
           </div>
-        </div>`;
+        </div>`,
+      });
     }
     for (var i = 1; i < 9; i++) {
-      console.log("medium button called");
-      inputs += `<div class='card-box' data-name='box'>
+      inputs.push({
+        task: `<div class='card-box' data-name='box'>
           <div class='card-front' data-key='${
             i + 8
           }' data-nick='nick-${i}'></div>
           <div class='card-back'>
             <img src='images/${i}.png' alt='Photo of Nicholas Cage' />
           </div>
-        </div>`;
+        </div>`,
+      });
     }
   } else if (e.target.classList.contains("hard")) {
     for (var i = 1; i < 13; i++) {
-      console.log("hard button called");
-      inputs += `<div class='card-box' data-name='box'>
+      inputs.push({
+        task: `<div class='card-box' data-name='box'>
             <div class='card-front' data-key='${i}' data-nick='nick-${i}'></div>
             <div class='card-back'>
               <img src='images/${i}.png' alt='Photo of Nicholas Cage' />
             </div>
-          </div>`;
+          </div>`,
+      });
     }
     for (var i = 1; i < 13; i++) {
-      console.log("hard button called");
-      inputs += `<div class='card-box' data-name='box'>
+      inputs.push({
+        task: `<div class='card-box' data-name='box'>
             <div class='card-front' data-key='${
               i + 12
             }' data-nick='nick-${i}'></div>
             <div class='card-back'>
               <img src='images/${i}.png' alt='Photo of Nicholas Cage' />
             </div>
-          </div>`;
+          </div>`,
+      });
     }
   }
 
@@ -217,7 +220,6 @@ let cardLoader = function (e) {
     inputs[m] = inputs[j];
     inputs[j] = t;
   }
-  console.log(inputs);
 
   for (var i = 0; i < inputs.length; i++) {
     let div = document.createElement("div");
