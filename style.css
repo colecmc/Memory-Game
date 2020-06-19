@@ -1,27 +1,77 @@
 /* ////////////////////////HEADER////////////////////// */
-.header-container {
-  display: flex;
+
+* {
+  background-color: black;
 }
 
-.header {
-  border: 1px solid blue;
-  flex: 1;
-  width: 100px;
-  height: 100px;
+.header-container {
+  display: flex;
+  justify-content: space-around;
 }
+
+/* .header {
+  flex: 1;
+  flex-wrap: wrap;
+  width: 10px;
+  height: 40px;
+  margin: 0 40px;
+  background-color: rgba(0, 0, 0, 0);
+  border: 2px solid #c355f5;
+  border-radius: 5px;
+  color: green;
+  padding: 12px 20px;
+  font-size: 15px;
+} */
+
+/* .header.easy {
+  color: red;
+}
+
+.header.medium {
+  color: red;
+}
+
+.header.hard {
+  color: red;
+}
+
+.header.logo {
+  color: red;
+  flex: 3;
+}
+
+.header.timer {
+  color: red;
+}
+
+.header.score {
+  color: red;
+}
+
+.header.reset {
+  color: red;
+}
+
+.header:hover {
+  background-color: #512b58;
+  opacity: 0.1;
+} */
 
 /* ////////////////////////CARD CONTAINER///////////////////// */
 .card-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, 150px);
-  grid-gap: 50px;
+  /* grid-gap: 0px; */
   justify-content: center;
 }
 
 .card-box {
   position: relative;
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
+  /* max-width: 300px;
+  max-height: 300px; */
+  /* object-fit: scale-down; */
   transition: all 0.5s ease;
   transform-style: preserve-3d;
 }
@@ -34,8 +84,8 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
   clip-path: inset(20px);
   background: blue;
   backface-visibility: hidden;
@@ -45,9 +95,20 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 200px;
+  /* width: 200px;
   height: 200px;
+  max-width: 300px;
+  max-height: 300px; */
+  object-fit: scale-down;
   clip-path: inset(20px);
   backface-visibility: hidden;
   transform: rotateY(180deg);
+}
+
+img {
+  width: 150px;
+  height: 150px;
+  max-width: 200px;
+  max-height: 200px;
+  object-fit: scale-down;
 }
