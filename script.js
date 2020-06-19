@@ -139,6 +139,7 @@ let cardLoader = function (e) {
   let inputs = [];
 
   if (e.target.classList.contains("easy")) {
+    cardContainer.innerText = "";
     for (var i = 1; i < 5; i++) {
       inputs.push({
         task: `<div class='card-box' data-name='box'>
@@ -160,6 +161,7 @@ let cardLoader = function (e) {
       });
     }
   } else if (e.target.classList.contains("medium")) {
+    cardContainer.innerText = "";
     for (var i = 1; i < 9; i++) {
       inputs.push({
         task: `<div class='card-box' data-name='box'>
@@ -183,6 +185,7 @@ let cardLoader = function (e) {
       });
     }
   } else if (e.target.classList.contains("hard")) {
+    cardContainer.innerText = "";
     for (var i = 1; i < 13; i++) {
       inputs.push({
         task: `<div class='card-box' data-name='box'>
