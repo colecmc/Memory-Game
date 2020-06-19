@@ -104,7 +104,7 @@ cardContainer.addEventListener("click", function (e) {
 let startBtn = document.querySelector(".timer");
 startBtn.addEventListener("click", () => {
   // Start with an initial value of 20 seconds
-  const TIME_LIMIT = 31;
+  const TIME_LIMIT = 30;
   let timePassed = 0;
   let timeLeft = TIME_LIMIT;
   let timer = setInterval(() => {
@@ -113,7 +113,7 @@ startBtn.addEventListener("click", () => {
     timeLeft = TIME_LIMIT - timePassed;
 
     // The time left span is updated
-    document.getElementById("timer-label").innerText = timeLeft;
+    document.getElementById("timer-label").innerText = `00:${timeLeft}`;
 
     if (timeLeft === 0) {
       clearInterval(timer);
