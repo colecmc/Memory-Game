@@ -122,3 +122,58 @@ startBtn.addEventListener("click", () => {
     }
   }, 1000);
 });
+
+///////////////////////////////////////////////////////////////EASY/MEDIUM/HARD
+// let cardArray = [
+//   <div class="card-box" data-name="box">
+//         <div class="card-front" data-key="1" data-nick="nick-one"></div>
+//         <div class="card-back">
+//           <img src="images/1.png" alt="Photo of Nicholas Cage" />
+//         </div>
+//       </div>
+//
+// ]
+
+let cardLoader = function (arg) {
+  let inputs = "";
+  if (arg === "easy") {
+    console.log("easy button called");
+    for (var i = 1; i < 13; i++) {
+      inputs += `<div class='card-box' data-name='box'>
+        <div class='card-front' data-key='${i}' data-nick='nick-${i}'></div>
+        <div class='card-back'>
+          <img src='images/${i}.png' alt='Photo of Nicholas Cage' />
+        </div>
+      </div>`;
+    }
+  } else if (arg === "medium") {
+    for (var i = 1; i < 17; i++) {
+      console.log("medium button called");
+      inputs += `<div class='card-box' data-name='box'>
+          <div class='card-front' data-key='${i}' data-nick='nick-${i}'></div>
+          <div class='card-back'>
+            <img src='images/${i}.png' alt='Photo of Nicholas Cage' />
+          </div>
+        </div>`;
+    }
+  } else if (arg === "hard") {
+    for (var i = 1; i < 25; i++) {
+      console.log("hard button called");
+      inputs += `<div class='card-box' data-name='box'>
+            <div class='card-front' data-key='${i}' data-nick='nick-${i}'></div>
+            <div class='card-back'>
+              <img src='images/${i}.png' alt='Photo of Nicholas Cage' />
+            </div>
+          </div>`;
+    }
+  }
+
+  cardContainer.innerHTML = inputs;
+};
+
+let easyBtn = document.querySelector(".easy");
+easyBtn.addEventListener("click", cardLoader("easy"));
+let mediumBtn = document.querySelector(".medium");
+mediumBtn.addEventListener("click", cardLoader("medium"));
+let hardBtn = document.querySelector(".hard");
+mediumBtn.addEventListener("click", cardLoader("hard"));
