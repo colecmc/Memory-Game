@@ -135,6 +135,7 @@ startBtn.addEventListener("click", () => {
 // ]
 
 let cardLoader = function (e) {
+  let testing;
   let inputs = "";
 
   if (e.target.classList.contains("easy")) {
