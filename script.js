@@ -142,70 +142,60 @@ let cardLoader = function (e) {
     cardContainer.innerText = "";
     for (var i = 1; i < 5; i++) {
       inputs.push({
-        task: `<div class='card-box' data-name='box'>
-        <div class='card-front' data-key='${i}' data-nick='nick-${i}'></div>
+        task: `<div class='card-front' data-key='${i}' data-nick='nick-${i}'></div>
         <div class='card-back'>
           <img src='images/${i}.png' alt='Photo of Nicholas Cage' />
-        </div>
-      </div>`,
+        </div>`,
       });
     }
     for (var i = 1; i < 5; i++) {
       inputs.push({
-        task: `<div class='card-box' data-name='box'>
-        <div class='card-front' data-key='${i + 6}' data-nick='nick-${i}'></div>
+        task: `<div class='card-front' data-key='${
+          i + 6
+        }' data-nick='nick-${i}'></div>
         <div class='card-back'>
           <img src='images/${i}.png' alt='Photo of Nicholas Cage' />
-        </div>
-      </div>`,
+        </div>`,
       });
     }
   } else if (e.target.classList.contains("medium")) {
     cardContainer.innerText = "";
     for (var i = 1; i < 9; i++) {
       inputs.push({
-        task: `<div class='card-box' data-name='box'>
-          <div class='card-front' data-key='${i}' data-nick='nick-${i}'></div>
+        task: `<div class='card-front' data-key='${i}' data-nick='nick-${i}'></div>
           <div class='card-back'>
             <img src='images/${i}.png' alt='Photo of Nicholas Cage' />
-          </div>
-        </div>`,
+          </div>`,
       });
     }
     for (var i = 1; i < 9; i++) {
       inputs.push({
-        task: `<div class='card-box' data-name='box'>
-          <div class='card-front' data-key='${
-            i + 8
-          }' data-nick='nick-${i}'></div>
+        task: `<div class='card-front' data-key='${
+          i + 8
+        }' data-nick='nick-${i}'></div>
           <div class='card-back'>
             <img src='images/${i}.png' alt='Photo of Nicholas Cage' />
-          </div>
-        </div>`,
+          </div>`,
       });
     }
   } else if (e.target.classList.contains("hard")) {
     cardContainer.innerText = "";
     for (var i = 1; i < 13; i++) {
       inputs.push({
-        task: `<div class='card-box' data-name='box'>
-            <div class='card-front' data-key='${i}' data-nick='nick-${i}'></div>
+        task: `<div class='card-front' data-key='${i}' data-nick='nick-${i}'></div>
             <div class='card-back'>
               <img src='images/${i}.png' alt='Photo of Nicholas Cage' />
-            </div>
-          </div>`,
+            </div>`,
       });
     }
     for (var i = 1; i < 13; i++) {
       inputs.push({
-        task: `<div class='card-box' data-name='box'>
-            <div class='card-front' data-key='${
-              i + 12
-            }' data-nick='nick-${i}'></div>
+        task: `<div class='card-front' data-key='${
+          i + 12
+        }' data-nick='nick-${i}'></div>
             <div class='card-back'>
               <img src='images/${i}.png' alt='Photo of Nicholas Cage' />
-            </div>
-          </div>`,
+            </div>`,
       });
     }
   }
