@@ -136,25 +136,30 @@ startBtn.addEventListener("click", () => {
 
 let cardLoader = function (e) {
   let testing;
-  let inputs = "";
+  let inputs = [];
 
   if (e.target.classList.contains("easy")) {
     for (var i = 1; i < 7; i++) {
-      inputs += `<div class='card-box' data-name='box'>
+      inputs.push({
+        task: `<div class='card-box' data-name='box'>
         <div class='card-front' data-key='${i}' data-nick='nick-${i}'></div>
         <div class='card-back'>
           <img src='images/${i}.png' alt='Photo of Nicholas Cage' />
         </div>
-      </div>`;
+      </div>`,
+      });
     }
-    for (var i = 1; i < 7; i++) {
-      inputs += `<div class='card-box' data-name='box'>
-        <div class='card-front' data-key='${i + 6}' data-nick='nick-${i}'></div>
+    for (var i = 7; i < 14; i++) {
+      inputs.push({
+        task: `<div class='card-box' data-name='box'>
+        <div class='card-front' data-key='${i}' data-nick='nick-${i - 6}'></div>
         <div class='card-back'>
-          <img src='images/${i}.png' alt='Photo of Nicholas Cage' />
+          <img src='images/${i - 6}.png' alt='Photo of Nicholas Cage' />
         </div>
-      </div>`;
+      </div>`,
+      });
     }
+    console.log(inputs);
   } else if (e.target.classList.contains("medium")) {
     for (var i = 1; i < 9; i++) {
       console.log("medium button called");
@@ -199,7 +204,18 @@ let cardLoader = function (e) {
     }
   }
 
-  cardContainer.innerHTML = inputs;
+  // for (var key in inputs) {
+  //   cardContainer.append(inputs[key]);
+  //   console.log(cardContainer);
+  // }
+
+  for (var i = 0; i < inputs.length; i++) {
+    let div = document.createElement("div");
+    div.classList.add("card-box");
+    div.setAttribute("data-name", "box");
+    div.innerHTML = inputs[i].task;
+    cardContainer.appendChild(div);
+  }
 };
 
 let easyBtn = document.querySelector(".easy");
