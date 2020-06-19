@@ -6,7 +6,23 @@
 
 .header-container {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 30vh;
+}
+
+.logo {
+  font-family: "Permanent Marker", cursive;
+  font-size: 0px;
+  text-align: center;
+  color: #fff;
+  margin: 10px 40px 0;
+}
+
+.cage {
+  font-size: 1.5em;
+  clip-path: inset(20px 0);
 }
 
 /* .header {
@@ -87,7 +103,7 @@
   width: 150px;
   height: 150px;
   clip-path: inset(20px);
-  background: blue;
+  background: #fff;
   backface-visibility: hidden;
 }
 
