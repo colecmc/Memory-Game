@@ -99,4 +99,26 @@ cardContainer.addEventListener("click", function (e) {
   }
 });
 
-///////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////TIMER
+
+let startBtn = document.querySelector(".timer");
+startBtn.addEventListener("click", () => {
+  // Start with an initial value of 20 seconds
+  const TIME_LIMIT = 30;
+  let timePassed = 0;
+  let timeLeft = TIME_LIMIT;
+  let timer = setInterval(() => {
+    // The amount of time passed increments by one
+    timePassed = timePassed += 1;
+    timeLeft = TIME_LIMIT - timePassed;
+
+    // The time left span is updated
+    document.getElementById("timer-label").innerText = `00:${timeLeft}`;
+
+    if (timeLeft === 0) {
+      clearInterval(timer);
+      timePassed = 0;
+      timeLeft = TIME_LIMIT;
+    }
+  }, 1000);
+});
