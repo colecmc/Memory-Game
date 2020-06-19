@@ -149,12 +149,12 @@ let cardLoader = function (e) {
       </div>`,
       });
     }
-    for (var i = 7; i < 14; i++) {
+    for (var i = 1; i < 7; i++) {
       inputs.push({
         task: `<div class='card-box' data-name='box'>
-        <div class='card-front' data-key='${i}' data-nick='nick-${i - 6}'></div>
+        <div class='card-front' data-key='${i + 6}' data-nick='nick-${i}'></div>
         <div class='card-back'>
-          <img src='images/${i - 6}.png' alt='Photo of Nicholas Cage' />
+          <img src='images/${i}.png' alt='Photo of Nicholas Cage' />
         </div>
       </div>`,
       });
@@ -204,10 +204,20 @@ let cardLoader = function (e) {
     }
   }
 
-  // for (var key in inputs) {
-  //   cardContainer.append(inputs[key]);
-  //   console.log(cardContainer);
-  // }
+  let m;
+  let t;
+  let j;
+
+  for (var i = 0; i < inputs.length; i++) {
+    m = inputs.length;
+    m--;
+    j = Math.floor(Math.random() * m);
+
+    t = inputs[m];
+    inputs[m] = inputs[j];
+    inputs[j] = t;
+  }
+  console.log(inputs);
 
   for (var i = 0; i < inputs.length; i++) {
     let div = document.createElement("div");
