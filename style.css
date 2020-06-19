@@ -1,24 +1,29 @@
 /* ////////////////////////HEADER////////////////////// */
+
+* {
+  background-color: black;
+}
+
 .header-container {
   display: flex;
   justify-content: space-around;
 }
 
-.header {
+/* .header {
   flex: 1;
   flex-wrap: wrap;
   width: 10px;
   height: 40px;
   margin: 0 40px;
-  /* background-color: rgba(0, 0, 0, 0); */
+  background-color: rgba(0, 0, 0, 0);
   border: 2px solid #c355f5;
   border-radius: 5px;
   color: green;
-  /* padding: 12px 20px; */
+  padding: 12px 20px;
   font-size: 15px;
-}
+} */
 
-.header.easy {
+/* .header.easy {
   color: red;
 }
 
@@ -50,7 +55,7 @@
 .header:hover {
   background-color: #512b58;
   opacity: 0.1;
-}
+} */
 
 /* ////////////////////////CARD CONTAINER///////////////////// */
 .card-container {
