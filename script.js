@@ -113,7 +113,7 @@ startBtn.addEventListener("click", () => {
     timeLeft = TIME_LIMIT - timePassed;
 
     // The time left span is updated
-    document.getElementById("timer-label").innerText = `00:${timeLeft}`;
+    document.getElementById("timer-label").innerText = `00:${tim eLeft}`;
 
     if (timeLeft === 0) {
       clearInterval(timer);
