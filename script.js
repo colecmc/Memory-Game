@@ -145,8 +145,38 @@ difficutlyBtns.forEach((item) => {
         clockBtn.classList.add("btn-outline-danger");
         clockBtn.classList.remove("btn-outline-light");
       }
+
+      let loser = document.createElement("div");
+      loser.innerHTML =
+        "<video src='images/loser.mp4' autoplay loop poster=''></video>";
+      loser.classList.add("loser");
+
+      let body = document.querySelector("body");
+
+      // let loserText = document.createElement("h1");
+      // loserText.innerText = "Look into my eyes.";
+      // loserText.classList.add("loser-text");
+      //
+      // let loserText2 = document.createElement("h1");
+      // loserText.innerText = "Your soul has lost!";
+      // loserText.classList.add("loser-text");
+
+      let loserCount = 0;
       if (timeLeft === 0) {
         clearInterval(timer);
+        body.prepend(loser);
+        // body.prepend(loserText);
+        let loserTimer = setInterval(() => {
+          loserCount++;
+          // loserText.remove();
+          // body.prepend(loserText2);
+          if (loserCount === 2) {
+            // loserText2.remove();
+            loser.remove();
+            clearInterval(loserTimer);
+          }
+        }, 3000);
+
         diff1.style.pointerEvents = "auto";
         diff2.style.pointerEvents = "auto";
         diff3.style.pointerEvents = "auto";
