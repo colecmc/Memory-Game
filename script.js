@@ -96,6 +96,9 @@ cardContainer.addEventListener("click", function (e) {
   ) {
     pair = [];
     highScore++;
+    for (var child of children) {
+      child.setAttribute("data-fliped", "true");
+    }
   }
 });
 
@@ -148,34 +151,31 @@ difficutlyBtns.forEach((item) => {
 
       let loser = document.createElement("div");
       loser.innerHTML =
-        "<iframe src='https://player.vimeo.com/video/430943719?autoplay=1&loop=1&autopause=0' width='640' height='360' frameborder='0' allow='autoplay; fullscreen' allowfullscreen></iframe>";
+        "<video src='images/loser.mp4' autoplay poster='posterimage.jpg'></video>";
+      // "<iframe src='https://player.vimeo.com/video/430943719?autoplay=1&loop=1&autopause=0' width='640' height='360' frameborder='0' allow='autoplay; fullscreen' allowfullscreen></iframe>";
       loser.classList.add("loser");
 
-      let body = document.querySelector("body");
+      let winner = document.createElement("div");
+      winner.innerHTML =
+        "<video src='images/winner.mp4' autoplay poster='posterimage.jpg'></video>";
+      // "<iframe src='https://player.vimeo.com/video/430943719?autoplay=1&loop=1&autopause=0' width='640' height='360' frameborder='0' allow='autoplay; fullscreen' allowfullscreen></iframe>";
+      winner.classList.add("loser");
 
-      // let loserText = document.createElement("h1");
-      // loserText.innerText = "Look into my eyes.";
-      // loserText.classList.add("loser-text");
-      //
-      // let loserText2 = document.createElement("h1");
-      // loserText.innerText = "Your soul has lost!";
-      // loserText.classList.add("loser-text");
+      let body = document.querySelector("body");
 
       let loserCount = 0;
       if (timeLeft === 0) {
         clearInterval(timer);
         body.prepend(loser);
-        // body.prepend(loserText);
+
         let loserTimer = setInterval(() => {
           loserCount++;
-          // loserText.remove();
-          // body.prepend(loserText2);
+
           if (loserCount === 2) {
-            // loserText2.remove();
             loser.remove();
             clearInterval(loserTimer);
           }
-        }, 1800);
+        }, 850);
 
         diff1.style.pointerEvents = "auto";
         diff2.style.pointerEvents = "auto";

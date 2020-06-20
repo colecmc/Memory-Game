@@ -138,19 +138,6 @@ img {
   opacity: 0.95;
 }
 
-.loser-text {
-  position: absolute;
-  background-blend-mode: multiply;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 2;
-  font-family: "Permanent Marker", cursive;
-  font-size: 4em;
-  text-align: center;
-  color: #fff;
-}
-
 /* ////////////////////////////////////////////////////////// */
 
 .base-timer__label {
