@@ -121,7 +121,7 @@ difficutlyBtns.forEach((item) => {
     ////////////////////////////////////////////////////////////SETTING UP COUNTDOWN CLOCK TIMES BASED ON DIFFICULTY BUTTONS
 
     if (e.target.classList.contains("easy")) {
-      TIME_LIMIT = 2;
+      TIME_LIMIT = 20;
       clock.innerText = "00:20";
     } else if (e.target.classList.contains("medium")) {
       TIME_LIMIT = 45;
