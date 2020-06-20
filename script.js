@@ -113,6 +113,8 @@ difficutlyBtns.forEach((item) => {
     diff3.style.pointerEvents = "none";
 
     let clock = document.getElementById("timer-label");
+    let clockBtn = document.querySelector(".timer-btn");
+
     let TIME_LIMIT;
 
     if (e.target.classList.contains("easy")) {
@@ -140,12 +142,16 @@ difficutlyBtns.forEach((item) => {
 
       if (timeLeft < 10) {
         clock.innerText = `00:0${timeLeft}`;
+        clockBtn.classList.add("btn-outline-danger");
+        clockBtn.classList.remove("btn-outline-light");
       }
       if (timeLeft === 0) {
         clearInterval(timer);
         diff1.style.pointerEvents = "auto";
         diff2.style.pointerEvents = "auto";
         diff3.style.pointerEvents = "auto";
+        clockBtn.classList.add("btn-outline-light");
+        clockBtn.classList.remove("btn-outline-danger");
         timePassed = 0;
         timeLeft = TIME_LIMIT;
       }
