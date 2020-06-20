@@ -109,6 +109,7 @@ difficutlyBtns.forEach((item) => {
     let mediumScore = sessionStorage.getItem("mediumScore");
     let hardScore = sessionStorage.getItem("hardScore");
     let topTime = document.querySelector(".top-time");
+    console.log(e.target.classList);
     if (e.target.classList.contains("easy")) {
       if (easyScore === null) {
         topTime.innerText = `TOP TIME:        `;
@@ -153,7 +154,7 @@ difficutlyBtns.forEach((item) => {
       TIME_LIMIT = 45;
       clock.innerText = "00:45";
     } else if (e.target.classList.contains("hard")) {
-      TIME_LIMIT = 60;
+      TIME_LIMIT = 160;
       clock.innerText = "01:00";
     }
 
@@ -184,22 +185,29 @@ difficutlyBtns.forEach((item) => {
       if (flipCount === cards.length) {
         /////////////////////UPDATE SESSION STORAGE
         let time = timePassed;
-        let easyScore = sessionStorage.getItem("easyScore");
-        let mediumScore = sessionStorage.getItem("mediumScore");
-        let hardScore = sessionStorage.getItem("hardScore");
-        if (e.target.classList.contains("easy") && time < easyScore) {
-          sessionStorage.setItem("easyScore", `${time}`);
+
+        if (e.target.classList.contains("easy")) {
+          if (easyScore === null || time < easyScore) {
+            sessionStorage.setItem("easyScore", `${time}`);
+            topTime.innerText = `TOP TIME: ${time}sec`;
+          }
         }
-        if (e.target.classList.contains("medium") && time < mediumScore) {
-          sessionStorage.setItem("mediumScore", `${time}`);
+        if (e.target.classList.contains("medium")) {
+          if (mediumScore === null || time < mediumScore) {
+            sessionStorage.setItem("mediumScore", `${time}`);
+            topTime.innerText = `TOP TIME: ${time}sec`;
+          }
         }
-        if (e.target.classList.contains("hard") && time < hardScore) {
-          sessionStorage.setItem("hardScore", `${time}`);
+        if (e.target.classList.contains("hard")) {
+          if (hardScore === null || time < hardScore) {
+            sessionStorage.setItem("hardScore", `${time}`);
+            topTime.innerText = `TOP TIME: ${time}sec`;
+          }
         }
-        easyScore = sessionStorage.getItem("easyScore");
-        mediumScore = sessionStorage.getItem("mediumScore");
-        hardScore = sessionStorage.getItem("hardScore");
-        topTime.innerText = `TOP TIME: ${easyScore}sec`;
+        // easyScore = sessionStorage.getItem("easyScore");
+        // mediumScore = sessionStorage.getItem("mediumScore");
+        // hardScore = sessionStorage.getItem("hardScore");
+        // topTime.innerText = `TOP TIME: ${ easyScore }sec`;
         /////////////////////ADD WINNING VIDEO AND CLEAR THE MAIN TIMER
         body.prepend(winner);
         clearInterval(timer);
