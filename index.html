@@ -23,33 +23,37 @@
   <body>
     <div class="header-container">
       <div class="header outline difficulty diff1">
-        <button type="button" class="btn btn-outline-light easy">
+        <button type="button" class="btn btn-outline-warning easy">
           EASY
         </button>
       </div>
       <div class="header outline difficulty diff2">
-        <button type="button" class="btn btn-outline-light medium">
+        <button type="button" class="btn btn-outline-warning medium">
           MEDIUM
         </button>
       </div>
       <div class="header outline difficulty diff3">
-        <button type="button" class="btn btn-outline-light hard">
+        <button type="button" class="btn btn-outline-warning hard">
           HARD
         </button>
       </div>
       <div class="header logo outline">
         <h1>THE<br /><span class="cage">CAGE</span><br />MATCH</h1>
       </div>
-      <div class="header timer-start outline">
-        <button type="button" class="btn btn-outline-light timer">Start</button>
-      </div>
+
       <div class="header timer-clock outline">
-        <button type="button" class="btn btn-outline-light">
-          <span id="timer-label">00:30</span>
+        <button
+          type="button"
+          class="timer-btn btn btn-lg btn-outline-info"
+          disabled
+        >
+          <span id="timer-label">00:00</span>
         </button>
       </div>
       <div class="header score outline">
-        <button type="button" class="btn btn-outline-light">SCORE: 00</button>
+        <button type="button" class="btn btn-lg btn-info" disabled>
+          TOP TIME: 00:00
+        </button>
       </div>
     </div>
 
