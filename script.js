@@ -101,38 +101,47 @@ cardContainer.addEventListener("click", function (e) {
 
 ///////////////////////////////////////////////////////////////TIMER
 
-let startBtn = document.querySelector(".timer");
-startBtn.addEventListener("click", () => {
-  // Start with an initial value of 20 seconds
-  const TIME_LIMIT = 30;
-  let timePassed = 0;
-  let timeLeft = TIME_LIMIT;
-  let timer = setInterval(() => {
-    // The amount of time passed increments by one
-    timePassed = timePassed += 1;
-    timeLeft = TIME_LIMIT - timePassed;
+let difficutlyBtns = document.querySelectorAll(".difficulty");
+let diff1 = document.querySelector(".diff1");
+let diff2 = document.querySelector(".diff2");
+let diff3 = document.querySelector(".diff3");
 
-    // The time left span is updated
-    document.getElementById("timer-label").innerText = `00:${timeLeft}`;
+difficutlyBtns.forEach((item) => {
+  item.addEventListener("click", () => {
+    diff1.style.pointerEvents = "none";
+    diff2.style.pointerEvents = "none";
+    diff3.style.pointerEvents = "none";
 
-    if (timeLeft === 0) {
-      clearInterval(timer);
-      timePassed = 0;
-      timeLeft = TIME_LIMIT;
-    }
-  }, 1000);
+    // Start with an initial value of 20 seconds
+    isRunning = true;
+    const TIME_LIMIT = 30;
+    let timePassed = 0;
+    let timeLeft = TIME_LIMIT;
+    let timer = setInterval(() => {
+      // The amount of time passed increments by one
+      timePassed = timePassed += 1;
+      timeLeft = TIME_LIMIT - timePassed;
+
+      // The time left span is updated
+      let clock = document.getElementById("timer-label");
+      clock.innerText = `00:${timeLeft}`;
+
+      if (timeLeft < 10) {
+        clock.innerText = `00:0${timeLeft}`;
+      }
+      if (timeLeft === 0) {
+        clearInterval(timer);
+        diff1.style.pointerEvents = "auto";
+        diff2.style.pointerEvents = "auto";
+        diff3.style.pointerEvents = "auto";
+        timePassed = 0;
+        timeLeft = TIME_LIMIT;
+      }
+    }, 1000);
+  });
 });
 
 ///////////////////////////////////////////////////////////////EASY/MEDIUM/HARD
-// let cardArray = [
-//   <div class="card-box" data-name="box">
-//         <div class="card-front" data-key="1" data-nick="nick-one"></div>
-//         <div class="card-back">
-//           <img src="images/1.png" alt="Photo of Nicholas Cage" />
-//         </div>
-//       </div>
-//
-// ]
 
 let cardLoader = function (e) {
   let testing;
