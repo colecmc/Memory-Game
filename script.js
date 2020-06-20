@@ -107,14 +107,26 @@ let diff2 = document.querySelector(".diff2");
 let diff3 = document.querySelector(".diff3");
 
 difficutlyBtns.forEach((item) => {
-  item.addEventListener("click", () => {
+  item.addEventListener("click", (e) => {
     diff1.style.pointerEvents = "none";
     diff2.style.pointerEvents = "none";
     diff3.style.pointerEvents = "none";
 
+    let clock = document.getElementById("timer-label");
+    let TIME_LIMIT;
+
+    if (e.target.classList.contains("easy")) {
+      TIME_LIMIT = 20;
+      clock.innerText = "00:20";
+    } else if (e.target.classList.contains("medium")) {
+      TIME_LIMIT = 45;
+      clock.innerText = "00:45";
+    } else if (e.target.classList.contains("hard")) {
+      TIME_LIMIT = 60;
+      clock.innerText = "01:00";
+    }
+
     // Start with an initial value of 20 seconds
-    isRunning = true;
-    const TIME_LIMIT = 30;
     let timePassed = 0;
     let timeLeft = TIME_LIMIT;
     let timer = setInterval(() => {
@@ -123,7 +135,7 @@ difficutlyBtns.forEach((item) => {
       timeLeft = TIME_LIMIT - timePassed;
 
       // The time left span is updated
-      let clock = document.getElementById("timer-label");
+
       clock.innerText = `00:${timeLeft}`;
 
       if (timeLeft < 10) {
