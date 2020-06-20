@@ -148,7 +148,7 @@ difficutlyBtns.forEach((item) => {
 
       let loser = document.createElement("div");
       loser.innerHTML =
-        "<iframe src='https://player.vimeo.com/video/430940061?autoplay=1&loop=1&autopause=0' width='1920' height='1080' frameborder='0' allow='autoplay; fullscreen' allowfullscreen></iframe>";
+        "<iframe src='https://player.vimeo.com/video/430943719?autoplay=1&loop=1&autopause=0' width='640' height='360' frameborder='0' allow='autoplay; fullscreen' allowfullscreen></iframe>";
       loser.classList.add("loser");
 
       let body = document.querySelector("body");
