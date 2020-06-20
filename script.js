@@ -204,10 +204,6 @@ difficutlyBtns.forEach((item) => {
             topTime.innerText = `TOP TIME: ${time}sec`;
           }
         }
-        // easyScore = sessionStorage.getItem("easyScore");
-        // mediumScore = sessionStorage.getItem("mediumScore");
-        // hardScore = sessionStorage.getItem("hardScore");
-        // topTime.innerText = `TOP TIME: ${ easyScore }sec`;
         /////////////////////ADD WINNING VIDEO AND CLEAR THE MAIN TIMER
         body.prepend(winner);
         clearInterval(timer);
