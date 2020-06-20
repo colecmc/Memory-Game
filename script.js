@@ -104,6 +104,19 @@ cardContainer.addEventListener("click", function (e) {
 let difficutlyBtns = document.querySelectorAll(".difficulty");
 difficutlyBtns.forEach((item) => {
   item.addEventListener("click", (e) => {
+    ////////////////////////////////////////////////////////////////SETTING UP VARIABLES FOR SESSION STORAGE
+    // let easyDiff = false;
+    // let mediumDiff = false;
+    // let hardDiff = false;
+    // console.log(e.target.classList.contains("easy"));
+    // if (e.target.classList.contains("easy")) {
+    //   let easyDiff = true;
+    // } else if (e.target.classList.contains("medium")) {
+    //   let mediumDiff = true;
+    // } else if (e.target.classList.contains("hard")) {
+    //   let hardDiff = true;
+    // }
+    // console.log(easyDiff);
     ////////////////////////////////////////////////////////////////DISABLING THE ABILITY TO CLICK THE BUTTONS AND RESTART TIMER
     let diff1 = document.querySelector(".diff1");
     let diff2 = document.querySelector(".diff2");
@@ -142,28 +155,48 @@ difficutlyBtns.forEach((item) => {
 
       ////////////////////////////////////////////////////////////////IF USER HAS WON
       let body = document.querySelector("body");
-
       let winner = document.createElement("div");
+      let cards = document.querySelectorAll(".card-box");
+      let topTime = document.querySelector(".top-time");
+      let flipCount = 0;
+      let winnerCount = 0;
+
       winner.innerHTML =
         "<video src='images/winner.mp4' autoplay poster='posterimage.jpg'></video>";
       winner.classList.add("loser");
 
-      let cards = document.querySelectorAll(".card-box");
-
-      let winnerCount = 0;
-
-      let flipCount = 0;
       for (var card of cards) {
         if (card.classList.contains("flip")) flipCount++;
       }
       if (flipCount === cards.length) {
+        /////////////////////UPDATE SESSION STORAGE
+        let time = timePassed;
+        let easyScore = sessionStorage.getItem("easyScore");
+        let mediumScore = sessionStorage.getItem("mediumScore");
+        let hardScore = sessionStorage.getItem("hardScore");
+        if (e.target.classList.contains("easy")) {
+          sessionStorage.setItem("easyScore", `${time}`);
+        }
+        if (e.target.classList.contains("medium")) {
+          sessionStorage.setItem("mediumScore", `${time}`);
+        }
+        if (e.target.classList.contains("hard")) {
+          sessionStorage.setItem("hardScore", `${time}`);
+        }
+        easyScore = sessionStorage.getItem("easyScore");
+        mediumScore = sessionStorage.getItem("mediumScore");
+        hardScore = sessionStorage.getItem("hardScore");
+        topTime.innerText = `TOP TIME: ${easyScore}sec`;
+        /////////////////////ADD WINNING VIDEO AND CLEAR THE MAIN TIMER
         body.prepend(winner);
         clearInterval(timer);
+        /////////////////////START THE WINNING INTERVAL TIMER TO REMOVE THE VIDEO AFTER 2 SECONDS
         let winnerTimer = setInterval(() => {
           winnerCount++;
           if (winnerCount === 2) {
             winner.remove();
             clearInterval(winnerTimer);
+            /////////////////////RESET THE BUTTONS AND STYLES BACK TO NORMAL
             diff1.style.pointerEvents = "auto";
             diff2.style.pointerEvents = "auto";
             diff3.style.pointerEvents = "auto";
