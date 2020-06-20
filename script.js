@@ -94,35 +94,30 @@ cardContainer.addEventListener("click", function (e) {
     pair[0] !== "undefined" &&
     pair[1] !== "undefined"
   ) {
-    // console.log(pair[0]);
-    // console.log(pair[1].dataset.name);
     pair = [];
     highScore++;
-
-    // child.setAttribute("data-fliped", "true");
   }
 });
 
 ///////////////////////////////////////////////////////////////TIMER
 
 let difficutlyBtns = document.querySelectorAll(".difficulty");
-let diff1 = document.querySelector(".diff1");
-let diff2 = document.querySelector(".diff2");
-let diff3 = document.querySelector(".diff3");
-
 difficutlyBtns.forEach((item) => {
   item.addEventListener("click", (e) => {
+    ////////////////////////////////////////////////////////////////DISABLING THE ABILITY TO CLICK THE BUTTONS AND RESTART TIMER
+    let diff1 = document.querySelector(".diff1");
+    let diff2 = document.querySelector(".diff2");
+    let diff3 = document.querySelector(".diff3");
+
     diff1.style.pointerEvents = "none";
     diff2.style.pointerEvents = "none";
     diff3.style.pointerEvents = "none";
-
+    ////////////////////////////////////////////////////////////////MAIN TIMER VARIABLES
     let clock = document.getElementById("timer-label");
     let clockBtn = document.querySelector(".timer-btn");
-
     let TIME_LIMIT;
-
-    ////////////////////////////////////////////////////////////////IF USER WON PLAY WINNING VIDEO
-
+    let timePassed = 0;
+    let timeLeft = TIME_LIMIT;
     ////////////////////////////////////////////////////////////SETTING UP COUNTDOWN CLOCK TIMES BASED ON DIFFICULTY BUTTONS
 
     if (e.target.classList.contains("easy")) {
@@ -136,17 +131,15 @@ difficutlyBtns.forEach((item) => {
       clock.innerText = "01:00";
     }
 
-    // Start with an initial value of 20 seconds
-    let timePassed = 0;
-    let timeLeft = TIME_LIMIT;
+    ////////////////////////////////////////////////////////////TIMER INTERVAL BEING CALLED EVERY SECOND
+
     let timer = setInterval(() => {
       // The amount of time passed increments by one
       timePassed = timePassed += 1;
       timeLeft = TIME_LIMIT - timePassed;
-
       // The time left span is updated
-
       clock.innerText = `00:${timeLeft}`;
+
       ////////////////////////////////////////////////////////////////IF USER HAS WON
       let body = document.querySelector("body");
 
@@ -171,6 +164,12 @@ difficutlyBtns.forEach((item) => {
           if (winnerCount === 2) {
             winner.remove();
             clearInterval(winnerTimer);
+            diff1.style.pointerEvents = "auto";
+            diff2.style.pointerEvents = "auto";
+            diff3.style.pointerEvents = "auto";
+            clockBtn.classList.add("btn-outline-light");
+            clockBtn.classList.remove("btn-outline-danger");
+            clock.innerText = "00:00";
           }
         }, 850);
       }
@@ -182,13 +181,13 @@ difficutlyBtns.forEach((item) => {
         clockBtn.classList.remove("btn-outline-light");
       }
 
+      ////////////////////////////////////////////////////////////////IF USER HAS LOST
       let loser = document.createElement("div");
+      let loserCount = 0;
+
       loser.innerHTML =
         "<video src='images/loser.mp4' autoplay poster='posterimage.jpg'></video>";
-      // "<iframe src='https://player.vimeo.com/video/430943719?autoplay=1&loop=1&autopause=0' width='640' height='360' frameborder='0' allow='autoplay; fullscreen' allowfullscreen></iframe>";
       loser.classList.add("loser");
-
-      let loserCount = 0;
 
       if (timeLeft === 0) {
         clearInterval(timer);
@@ -203,6 +202,7 @@ difficutlyBtns.forEach((item) => {
           }
         }, 850);
 
+        ////////////////////////////////////////////////////////////////REENABLING THE CLICK FUNCTIONALITY OF BUTTONS
         diff1.style.pointerEvents = "auto";
         diff2.style.pointerEvents = "auto";
         diff3.style.pointerEvents = "auto";
