@@ -1,5 +1,5 @@
 /////////////////////////////////////////////////////////////////GLOBAL VARIABLES
-let cardContainer = document.querySelector(".card-container");
+const cardContainer = document.querySelector(".card-container");
 let pair = [];
 let highScore = 0;
 let firstCard;
@@ -102,20 +102,23 @@ cardContainer.addEventListener("click", function (e) {
 ///////////////////////////////////////////////////////////////TIMER
 
 let difficutlyBtns = document.querySelectorAll(".difficulty");
-let diff1 = document.querySelector(".diff1");
-let diff2 = document.querySelector(".diff2");
-let diff3 = document.querySelector(".diff3");
-
 difficutlyBtns.forEach((item) => {
   item.addEventListener("click", (e) => {
+    ////////////////////////////////////////////////////////////////DISABLING THE ABILITY TO CLICK THE BUTTONS AND RESTART TIMER
+    let diff1 = document.querySelector(".diff1");
+    let diff2 = document.querySelector(".diff2");
+    let diff3 = document.querySelector(".diff3");
+
     diff1.style.pointerEvents = "none";
     diff2.style.pointerEvents = "none";
     diff3.style.pointerEvents = "none";
-
+    ////////////////////////////////////////////////////////////////MAIN TIMER VARIABLES
     let clock = document.getElementById("timer-label");
     let clockBtn = document.querySelector(".timer-btn");
-
     let TIME_LIMIT;
+    let timePassed = 0;
+    let timeLeft = TIME_LIMIT;
+    ////////////////////////////////////////////////////////////SETTING UP COUNTDOWN CLOCK TIMES BASED ON DIFFICULTY BUTTONS
 
     if (e.target.classList.contains("easy")) {
       TIME_LIMIT = 20;
@@ -128,25 +131,78 @@ difficutlyBtns.forEach((item) => {
       clock.innerText = "01:00";
     }
 
-    // Start with an initial value of 20 seconds
-    let timePassed = 0;
-    let timeLeft = TIME_LIMIT;
+    ////////////////////////////////////////////////////////////TIMER INTERVAL BEING CALLED EVERY SECOND
+
     let timer = setInterval(() => {
       // The amount of time passed increments by one
       timePassed = timePassed += 1;
       timeLeft = TIME_LIMIT - timePassed;
-
       // The time left span is updated
-
       clock.innerText = `00:${timeLeft}`;
 
+      ////////////////////////////////////////////////////////////////IF USER HAS WON
+      let body = document.querySelector("body");
+
+      let winner = document.createElement("div");
+      winner.innerHTML =
+        "<video src='images/winner.mp4' autoplay poster='posterimage.jpg'></video>";
+      winner.classList.add("loser");
+
+      let cards = document.querySelectorAll(".card-box");
+
+      let winnerCount = 0;
+
+      let flipCount = 0;
+      for (var card of cards) {
+        if (card.classList.contains("flip")) flipCount++;
+      }
+      if (flipCount === cards.length) {
+        body.prepend(winner);
+        clearInterval(timer);
+        let winnerTimer = setInterval(() => {
+          winnerCount++;
+          if (winnerCount === 2) {
+            winner.remove();
+            clearInterval(winnerTimer);
+            diff1.style.pointerEvents = "auto";
+            diff2.style.pointerEvents = "auto";
+            diff3.style.pointerEvents = "auto";
+            clockBtn.classList.add("btn-outline-light");
+            clockBtn.classList.remove("btn-outline-danger");
+            clock.innerText = "00:00";
+          }
+        }, 850);
+      }
+
+      ////////////////////////////////////////////////////////////////IF USER HAS 10 SECONDS LEFT TURN TIMER TO RED
       if (timeLeft < 10) {
         clock.innerText = `00:0${timeLeft}`;
         clockBtn.classList.add("btn-outline-danger");
         clockBtn.classList.remove("btn-outline-light");
       }
+
+      ////////////////////////////////////////////////////////////////IF USER HAS LOST
+      let loser = document.createElement("div");
+      let loserCount = 0;
+
+      loser.innerHTML =
+        "<video src='images/loser.mp4' autoplay poster='posterimage.jpg'></video>";
+      loser.classList.add("loser");
+
       if (timeLeft === 0) {
         clearInterval(timer);
+        body.prepend(loser);
+
+        let loserTimer = setInterval(() => {
+          loserCount++;
+
+          if (loserCount === 2) {
+            loser.remove();
+            clearInterval(loserTimer);
+          }
+        }, 850);
+
+        ////////////////////////////////////////////////////////////////REENABLING THE CLICK FUNCTIONALITY OF BUTTONS
         diff1.style.pointerEvents = "auto";
         diff2.style.pointerEvents = "auto";
         diff3.style.pointerEvents = "auto";
