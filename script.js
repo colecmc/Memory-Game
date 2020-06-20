@@ -105,18 +105,31 @@ let difficutlyBtns = document.querySelectorAll(".difficulty");
 difficutlyBtns.forEach((item) => {
   item.addEventListener("click", (e) => {
     ////////////////////////////////////////////////////////////////SETTING UP VARIABLES FOR SESSION STORAGE
-    // let easyDiff = false;
-    // let mediumDiff = false;
-    // let hardDiff = false;
-    // console.log(e.target.classList.contains("easy"));
-    // if (e.target.classList.contains("easy")) {
-    //   let easyDiff = true;
-    // } else if (e.target.classList.contains("medium")) {
-    //   let mediumDiff = true;
-    // } else if (e.target.classList.contains("hard")) {
-    //   let hardDiff = true;
-    // }
-    // console.log(easyDiff);
+    let easyScore = sessionStorage.getItem("easyScore");
+    let mediumScore = sessionStorage.getItem("mediumScore");
+    let hardScore = sessionStorage.getItem("hardScore");
+    let topTime = document.querySelector(".top-time");
+    if (e.target.classList.contains("easy")) {
+      if (easyScore === null) {
+        topTime.innerText = `TOP TIME:        `;
+      } else {
+        topTime.innerText = `TOP TIME: ${easyScore}sec`;
+      }
+    }
+    if (e.target.classList.contains("medium")) {
+      if (mediumScore === null) {
+        topTime.innerText = `TOP TIME:        `;
+      } else {
+        topTime.innerText = `TOP TIME: ${mediumScore}sec`;
+      }
+    }
+    if (e.target.classList.contains("hard")) {
+      if (hardScore === null) {
+        topTime.innerText = `TOP TIME:        `;
+      } else {
+        topTime.innerText = `TOP TIME: ${hardScore}sec`;
+      }
+    }
     ////////////////////////////////////////////////////////////////DISABLING THE ABILITY TO CLICK THE BUTTONS AND RESTART TIMER
     let diff1 = document.querySelector(".diff1");
     let diff2 = document.querySelector(".diff2");
@@ -157,7 +170,7 @@ difficutlyBtns.forEach((item) => {
       let body = document.querySelector("body");
       let winner = document.createElement("div");
       let cards = document.querySelectorAll(".card-box");
-      let topTime = document.querySelector(".top-time");
+
       let flipCount = 0;
       let winnerCount = 0;
 
@@ -174,13 +187,13 @@ difficutlyBtns.forEach((item) => {
         let easyScore = sessionStorage.getItem("easyScore");
         let mediumScore = sessionStorage.getItem("mediumScore");
         let hardScore = sessionStorage.getItem("hardScore");
-        if (e.target.classList.contains("easy")) {
+        if (e.target.classList.contains("easy") && time < easyScore) {
           sessionStorage.setItem("easyScore", `${time}`);
         }
-        if (e.target.classList.contains("medium")) {
+        if (e.target.classList.contains("medium") && time < mediumScore) {
           sessionStorage.setItem("mediumScore", `${time}`);
         }
-        if (e.target.classList.contains("hard")) {
+        if (e.target.classList.contains("hard") && time < hardScore) {
           sessionStorage.setItem("hardScore", `${time}`);
         }
         easyScore = sessionStorage.getItem("easyScore");
