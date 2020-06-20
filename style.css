@@ -1,31 +1,160 @@
-
 /* ////////////////////////HEADER////////////////////// */
+
+* {
+  background-color: black;
+}
+
 .header-container {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 30vh;
 }
 
-.header {
-  border: 1px solid red;
-  flex: 1;
-  width: 100px;
-  height: 100px;
+.logo {
+  font-family: "Permanent Marker", cursive;
+  font-size: 0px;
+  text-align: center;
+  color: #fff;
+  margin: 10px 40px 0;
 }
+
+.cage {
+  font-size: 1.5em;
+  clip-path: inset(20px 0);
+}
+
+/* .header {
+  flex: 1;
+  flex-wrap: wrap;
+  width: 10px;
+  height: 40px;
+  margin: 0 40px;
+  background-color: rgba(0, 0, 0, 0);
+  border: 2px solid #c355f5;
+  border-radius: 5px;
+  color: green;
+  padding: 12px 20px;
+  font-size: 15px;
+} */
+
+/* .header.easy {
+  color: red;
+}
+
+.header.medium {
+  color: red;
+}
+
+.header.hard {
+  color: red;
+}
+
+.header.logo {
+  color: red;
+  flex: 3;
+}
+
+.header.timer {
+  color: red;
+}
+
+.header.score {
+  color: red;
+}
+
+.header.reset {
+  color: red;
+}
+
+.header:hover {
+  background-color: #512b58;
+  opacity: 0.1;
+} */
 
 /* ////////////////////////CARD CONTAINER///////////////////// */
 .card-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, 150px);
-  grid-gap: 20px;
+  /* grid-gap: 0px; */
   justify-content: center;
-  margin: 0 60px;
-  scroll-behavior: smooth;
 }
 
-.card-cover {
-  max-width: 150px;
-  min-width: 100px;
-  border-width: 10px;
-  border-style: solid;
-  border-color: white;
-  border-image: 3px solid;
+.card-box {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  /* max-width: 300px;
+  max-height: 300px; */
+  /* object-fit: scale-down; */
+  transition: all 0.5s ease;
+  transform-style: preserve-3d;
+}
+
+.flip {
+  transform: rotateY(180deg);
+}
+
+.card-front {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 150px;
+  height: 150px;
+  clip-path: inset(20px);
+  background: #fff;
+  backface-visibility: hidden;
+}
+
+.card-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* width: 200px;
+  height: 200px;
+  max-width: 300px;
+  max-height: 300px; */
+  object-fit: scale-down;
+  clip-path: inset(20px);
+  backface-visibility: hidden;
+  transform: rotateY(180deg);
+}
+
+img {
+  width: 150px;
+  height: 150px;
+  max-width: 200px;
+  max-height: 200px;
+  object-fit: scale-down;
+}
+
+.loser {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.95;
+}
+
+/* ////////////////////////////////////////////////////////// */
+
+.base-timer__label {
+  /* position: absolute; */
+
+  /* Size should match the parent container */
+  width: 300px;
+  height: 300px;
+
+  /* Keep the label aligned to the top */
+  /* top: 0; */
+
+  /* Create a flexible box that centers content vertically and horizontally */
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+
+  /* Sort of an arbitrary number; adjust to your liking */
+  font-size: 48px;
 }
