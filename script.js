@@ -118,7 +118,7 @@ difficutlyBtns.forEach((item) => {
     let TIME_LIMIT;
 
     if (e.target.classList.contains("easy")) {
-      TIME_LIMIT = 20;
+      TIME_LIMIT = 2;
       clock.innerText = "00:20";
     } else if (e.target.classList.contains("medium")) {
       TIME_LIMIT = 45;
@@ -148,7 +148,7 @@ difficutlyBtns.forEach((item) => {
 
       let loser = document.createElement("div");
       loser.innerHTML =
-        "<video src='images/loser.mp4' autoplay loop poster=''></video>";
+        "<iframe src='https://player.vimeo.com/video/430940061?autoplay=1&loop=1&autopause=0' width='1920' height='1080' frameborder='0' allow='autoplay; fullscreen' allowfullscreen></iframe>";
       loser.classList.add("loser");
 
       let body = document.querySelector("body");
@@ -175,7 +175,7 @@ difficutlyBtns.forEach((item) => {
             loser.remove();
             clearInterval(loserTimer);
           }
-        }, 3000);
+        }, 1800);
 
         diff1.style.pointerEvents = "auto";
         diff2.style.pointerEvents = "auto";
