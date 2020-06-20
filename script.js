@@ -1,5 +1,5 @@
 /////////////////////////////////////////////////////////////////GLOBAL VARIABLES
-let cardContainer = document.querySelector(".card-container");
+const cardContainer = document.querySelector(".card-container");
 let pair = [];
 let highScore = 0;
 let firstCard;
@@ -94,11 +94,12 @@ cardContainer.addEventListener("click", function (e) {
     pair[0] !== "undefined" &&
     pair[1] !== "undefined"
   ) {
+    // console.log(pair[0]);
+    // console.log(pair[1].dataset.name);
     pair = [];
     highScore++;
-    for (var child of children) {
-      child.setAttribute("data-fliped", "true");
-    }
+
+    // child.setAttribute("data-fliped", "true");
   }
 });
 
@@ -119,6 +120,78 @@ difficutlyBtns.forEach((item) => {
     let clockBtn = document.querySelector(".timer-btn");
 
     let TIME_LIMIT;
+
+    ////////////////////////////////////////////////////////////////IF USER WON PLAY WINNING VIDEO
+    let body = document.querySelector("body");
+
+    let winner = document.createElement("div");
+    winner.innerHTML =
+      "<video src='images/winner.mp4' autoplay poster='posterimage.jpg'></video>";
+    winner.classList.add("loser");
+
+    let cards = document.querySelectorAll(".card-box");
+
+    let winnerCount = 0;
+
+    let ifWonTimer = setInterval(() => {
+      let flipCount = 0;
+      for (var card of cards) {
+        if (card.classList.contains("flip")) flipCount++;
+      }
+      if (flipCount === cards.length) {
+        body.prepend(winner);
+
+        // let winnerTimer = setInterval(() => {
+        //   winnerCount++;
+        //   if (winnerCount === 2) {
+        //     winner.remove();
+        //     clearInterval(winnerTimer);
+        //   }
+        // }, 850);
+      }
+    }, 1000);
+
+    // let ifWonTimer = setInterval(() => {
+    //   let flipCount = 0;
+    //   for (var card of cards) {
+    //     // console.log(card.classList);
+    //     if (card.dataset.fliped === "true") {
+    //       flipCount++;
+    //       // console.log(flipCount);
+    //       if (flipCount === cards.length) {
+    //         body.prepend(winner);
+    //         clearInterval(ifWonTimer);
+    //         let winnerTimer = setInterval(() => {
+    //           winnerCount++;
+    //           if (winerCount === 2) {
+    //             winner.remove();
+    //             clearInterval(winnerTimer);
+    //           }
+    //         }, 850);
+    //       }
+    //     }
+    //   }
+    // }, 1000);
+
+    // for (var card of cards) {
+    //   if (card.dataset.fliped === "true") {
+    //     flipCount++;
+    //     console.log(flipCount);
+    //     if (flipCount === cards.length) {
+    //       body.prepend(winner);
+    //       let winnerTimer = setInterval(() => {
+    //         winnerCount++;
+    //
+    //         if (winerCount === 2) {
+    //           winner.remove();
+    //           clearInterval(winnerTimer);
+    //         }
+    //       }, 850);
+    //     }
+    //   }
+    // }
+
+    ////////////////////////////////////////////////////////////SETTING UP COUNTDOWN CLOCK TIMES BASED ON DIFFICULTY BUTTONS
 
     if (e.target.classList.contains("easy")) {
       TIME_LIMIT = 2;
@@ -143,6 +216,7 @@ difficutlyBtns.forEach((item) => {
 
       clock.innerText = `00:${timeLeft}`;
 
+      ////////////////////////////////////////////////////////////////IF USER HAS 10 SECONDS LEFT TURN TIMER TO RED
       if (timeLeft < 10) {
         clock.innerText = `00:0${timeLeft}`;
         clockBtn.classList.add("btn-outline-danger");
@@ -155,15 +229,8 @@ difficutlyBtns.forEach((item) => {
       // "<iframe src='https://player.vimeo.com/video/430943719?autoplay=1&loop=1&autopause=0' width='640' height='360' frameborder='0' allow='autoplay; fullscreen' allowfullscreen></iframe>";
       loser.classList.add("loser");
 
-      let winner = document.createElement("div");
-      winner.innerHTML =
-        "<video src='images/winner.mp4' autoplay poster='posterimage.jpg'></video>";
-      // "<iframe src='https://player.vimeo.com/video/430943719?autoplay=1&loop=1&autopause=0' width='640' height='360' frameborder='0' allow='autoplay; fullscreen' allowfullscreen></iframe>";
-      winner.classList.add("loser");
-
-      let body = document.querySelector("body");
-
       let loserCount = 0;
+
       if (timeLeft === 0) {
         clearInterval(timer);
         body.prepend(loser);
