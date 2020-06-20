@@ -122,74 +122,6 @@ difficutlyBtns.forEach((item) => {
     let TIME_LIMIT;
 
     ////////////////////////////////////////////////////////////////IF USER WON PLAY WINNING VIDEO
-    let body = document.querySelector("body");
-
-    let winner = document.createElement("div");
-    winner.innerHTML =
-      "<video src='images/winner.mp4' autoplay poster='posterimage.jpg'></video>";
-    winner.classList.add("loser");
-
-    let cards = document.querySelectorAll(".card-box");
-
-    let winnerCount = 0;
-
-    let ifWonTimer = setInterval(() => {
-      let flipCount = 0;
-      for (var card of cards) {
-        if (card.classList.contains("flip")) flipCount++;
-      }
-      if (flipCount === cards.length) {
-        body.prepend(winner);
-
-        // let winnerTimer = setInterval(() => {
-        //   winnerCount++;
-        //   if (winnerCount === 2) {
-        //     winner.remove();
-        //     clearInterval(winnerTimer);
-        //   }
-        // }, 850);
-      }
-    }, 1000);
-
-    // let ifWonTimer = setInterval(() => {
-    //   let flipCount = 0;
-    //   for (var card of cards) {
-    //     // console.log(card.classList);
-    //     if (card.dataset.fliped === "true") {
-    //       flipCount++;
-    //       // console.log(flipCount);
-    //       if (flipCount === cards.length) {
-    //         body.prepend(winner);
-    //         clearInterval(ifWonTimer);
-    //         let winnerTimer = setInterval(() => {
-    //           winnerCount++;
-    //           if (winerCount === 2) {
-    //             winner.remove();
-    //             clearInterval(winnerTimer);
-    //           }
-    //         }, 850);
-    //       }
-    //     }
-    //   }
-    // }, 1000);
-
-    // for (var card of cards) {
-    //   if (card.dataset.fliped === "true") {
-    //     flipCount++;
-    //     console.log(flipCount);
-    //     if (flipCount === cards.length) {
-    //       body.prepend(winner);
-    //       let winnerTimer = setInterval(() => {
-    //         winnerCount++;
-    //
-    //         if (winerCount === 2) {
-    //           winner.remove();
-    //           clearInterval(winnerTimer);
-    //         }
-    //       }, 850);
-    //     }
-    //   }
-    // }
 
     ////////////////////////////////////////////////////////////SETTING UP COUNTDOWN CLOCK TIMES BASED ON DIFFICULTY BUTTONS
 
@@ -215,6 +147,33 @@ difficutlyBtns.forEach((item) => {
       // The time left span is updated
 
       clock.innerText = `00:${timeLeft}`;
+      ////////////////////////////////////////////////////////////////IF USER HAS WON
+      let body = document.querySelector("body");
+
+      let winner = document.createElement("div");
+      winner.innerHTML =
+        "<video src='images/winner.mp4' autoplay poster='posterimage.jpg'></video>";
+      winner.classList.add("loser");
+
+      let cards = document.querySelectorAll(".card-box");
+
+      let winnerCount = 0;
+
+      let flipCount = 0;
+      for (var card of cards) {
+        if (card.classList.contains("flip")) flipCount++;
+      }
+      if (flipCount === cards.length) {
+        body.prepend(winner);
+        clearInterval(timer);
+        let winnerTimer = setInterval(() => {
+          winnerCount++;
+          if (winnerCount === 2) {
+            winner.remove();
+            clearInterval(winnerTimer);
+          }
+        }, 850);
+      }
 
       ////////////////////////////////////////////////////////////////IF USER HAS 10 SECONDS LEFT TURN TIMER TO RED
       if (timeLeft < 10) {
