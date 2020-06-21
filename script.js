@@ -1,7 +1,6 @@
 /////////////////////////////////////////////////////////////////GLOBAL VARIABLES
 const cardContainer = document.querySelector(".card-container");
 let pair = [];
-let highScore = 0;
 let firstCard;
 let secondCard;
 let firstKey;
@@ -14,11 +13,11 @@ let numFliped = 0;
 cardContainer.addEventListener("click", function (e) {
   /////////////////////////////////////////////////////////////////LOCAL VARIABLES
 
-  let dataNick = e.target.dataset.nick;
-  let name = e.target.dataset.name;
-  let card = e.target;
-  let parent = e.target.parentElement.parentElement;
-  let children = parent.children;
+  const dataNick = e.target.dataset.nick;
+  const name = e.target.dataset.name;
+  const card = e.target;
+  const parent = e.target.parentElement.parentElement;
+  const children = parent.children;
 
   /////////////////////////////////////////////////////////////////CONDITIONALS TO ONLY LET THE CARDS BE SELECTED TO FLIP
 
@@ -95,13 +94,12 @@ cardContainer.addEventListener("click", function (e) {
     pair[1] !== "undefined"
   ) {
     pair = [];
-    highScore++;
   }
 });
 
 ///////////////////////////////////////////////////////////////TIMER
 
-let difficutlyBtns = document.querySelectorAll(".difficulty");
+const difficutlyBtns = document.querySelectorAll(".difficulty");
 difficutlyBtns.forEach((item) => {
   item.addEventListener("click", (e) => {
     ////////////////////////////////////////////////////////////////SETTING UP VARIABLES FOR SESSION STORAGE
@@ -132,16 +130,16 @@ difficutlyBtns.forEach((item) => {
       }
     }
     ////////////////////////////////////////////////////////////////DISABLING THE ABILITY TO CLICK THE BUTTONS AND RESTART TIMER
-    let diff1 = document.querySelector(".diff1");
-    let diff2 = document.querySelector(".diff2");
-    let diff3 = document.querySelector(".diff3");
+    const diff1 = document.querySelector(".diff1");
+    const diff2 = document.querySelector(".diff2");
+    const diff3 = document.querySelector(".diff3");
 
     diff1.style.pointerEvents = "none";
     diff2.style.pointerEvents = "none";
     diff3.style.pointerEvents = "none";
     ////////////////////////////////////////////////////////////////MAIN TIMER VARIABLES
-    let clock = document.getElementById("timer-label");
-    let clockBtn = document.querySelector(".timer-btn");
+    const clock = document.getElementById("timer-label");
+    const clockBtn = document.querySelector(".timer-btn");
     let TIME_LIMIT;
     let timePassed = 0;
     let timeLeft = TIME_LIMIT;
@@ -160,7 +158,7 @@ difficutlyBtns.forEach((item) => {
     clockBtn.classList.add("starting");
     ////////////////////////////////////////////////////////////TIMER INTERVAL BEING CALLED EVERY SECOND
 
-    let timer = setInterval(() => {
+    const timer = setInterval(() => {
       // The amount of time passed increments by one
       timePassed = timePassed += 1;
       timeLeft = TIME_LIMIT - timePassed;
@@ -168,9 +166,9 @@ difficutlyBtns.forEach((item) => {
       clock.innerText = `00:${timeLeft}`;
 
       ////////////////////////////////////////////////////////////////IF USER HAS WON
-      let body = document.querySelector("body");
-      let winner = document.createElement("div");
-      let cards = document.querySelectorAll(".card-box");
+      const body = document.querySelector("body");
+      const winner = document.createElement("div");
+      const cards = document.querySelectorAll(".card-box");
 
       let flipCount = 0;
       let winnerCount = 0;
@@ -183,6 +181,9 @@ difficutlyBtns.forEach((item) => {
         if (card.classList.contains("flip")) flipCount++;
       }
       if (flipCount === cards.length) {
+        /////////////////////ADD WINNING VIDEO AND CLEAR THE MAIN TIMER
+        body.prepend(winner);
+        clearInterval(timer);
         /////////////////////UPDATE SESSION STORAGE
         let time = timePassed;
 
@@ -204,11 +205,8 @@ difficutlyBtns.forEach((item) => {
             topTime.innerText = `TOP TIME: ${time}sec`;
           }
         }
-        /////////////////////ADD WINNING VIDEO AND CLEAR THE MAIN TIMER
-        body.prepend(winner);
-        clearInterval(timer);
         /////////////////////START THE WINNING INTERVAL TIMER TO REMOVE THE VIDEO AFTER 2 SECONDS
-        let winnerTimer = setInterval(() => {
+        const winnerTimer = setInterval(() => {
           winnerCount++;
           if (winnerCount === 2) {
             ///////////////////RESETING THE BODY TO HAVE NO CARDS AND REMOVE THE TIMER DANGER CLASS
@@ -236,7 +234,7 @@ difficutlyBtns.forEach((item) => {
       }
 
       ////////////////////////////////////////////////////////////////IF USER HAS LOST
-      let loser = document.createElement("div");
+      const loser = document.createElement("div");
       let loserCount = 0;
 
       loser.innerHTML =
@@ -249,7 +247,7 @@ difficutlyBtns.forEach((item) => {
 
         //////////////////////////////////////////////////////////////TIMER TO REMOVE THE LOST VIDEO AFTER A SECOND
 
-        let loserTimer = setInterval(() => {
+        const loserTimer = setInterval(() => {
           loserCount++;
           ///////////////////RESETING THE BODY TO HAVE NO cards
           cardContainer.innerHTML = "";
@@ -273,12 +271,13 @@ difficutlyBtns.forEach((item) => {
   });
 });
 
-///////////////////////////////////////////////////////////////EASY/MEDIUM/HARD
+///////////////////////////////////////////////////////////////EASY/MEDIUM/HARD BUTTONS LOADING ON CLICK FUNCTION
 
-let cardLoader = function (e) {
+const cardLoader = function (e) {
   let testing;
   let inputs = [];
 
+  //////////////////////////////////////////////EASY BUTTON LOOP
   if (e.target.classList.contains("easy")) {
     cardContainer.innerText = "";
     for (var i = 1; i < 5; i++) {
@@ -299,6 +298,7 @@ let cardLoader = function (e) {
         </div>`,
       });
     }
+    //////////////////////////////////////////////MEDIUM BUTTON LOOP
   } else if (e.target.classList.contains("medium")) {
     cardContainer.innerText = "";
     for (var i = 1; i < 9; i++) {
@@ -319,6 +319,7 @@ let cardLoader = function (e) {
           </div>`,
       });
     }
+    //////////////////////////////////////////////HARD BUTTON LOOP
   } else if (e.target.classList.contains("hard")) {
     cardContainer.innerText = "";
     for (var i = 1; i < 13; i++) {
@@ -340,7 +341,7 @@ let cardLoader = function (e) {
       });
     }
   }
-
+  //////////////////////////////////////////////RANDOMIZATION LOOP
   let m;
   let t;
   let j;
@@ -355,6 +356,7 @@ let cardLoader = function (e) {
     inputs[j] = t;
   }
 
+  //////////////////////////////////////////////POPULATE LOOP
   for (var i = 0; i < inputs.length; i++) {
     let div = document.createElement("div");
     div.classList.add("card-box");
@@ -364,9 +366,10 @@ let cardLoader = function (e) {
   }
 };
 
-let easyBtn = document.querySelector(".easy");
+//////////////////////////////////////////////CLICK EVENT IMPLEMENTING THE CARDLOADER FUNCTION
+const easyBtn = document.querySelector(".easy");
 easyBtn.addEventListener("click", cardLoader);
-let mediumBtn = document.querySelector(".medium");
+const mediumBtn = document.querySelector(".medium");
 mediumBtn.addEventListener("click", cardLoader);
-let hardBtn = document.querySelector(".hard");
+const hardBtn = document.querySelector(".hard");
 hardBtn.addEventListener("click", cardLoader);
