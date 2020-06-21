@@ -109,7 +109,7 @@ difficutlyBtns.forEach((item) => {
     let mediumScore = sessionStorage.getItem("mediumScore");
     let hardScore = sessionStorage.getItem("hardScore");
     let topTime = document.querySelector(".top-time");
-    console.log(e.target.classList);
+
     if (e.target.classList.contains("easy")) {
       if (easyScore === null) {
         topTime.innerText = `TOP TIME:        `;
@@ -154,10 +154,10 @@ difficutlyBtns.forEach((item) => {
       TIME_LIMIT = 45;
       clock.innerText = "00:45";
     } else if (e.target.classList.contains("hard")) {
-      TIME_LIMIT = 160;
+      TIME_LIMIT = 60;
       clock.innerText = "01:00";
     }
-
+    clockBtn.classList.add("starting");
     ////////////////////////////////////////////////////////////TIMER INTERVAL BEING CALLED EVERY SECOND
 
     let timer = setInterval(() => {
@@ -211,6 +211,10 @@ difficutlyBtns.forEach((item) => {
         let winnerTimer = setInterval(() => {
           winnerCount++;
           if (winnerCount === 2) {
+            ///////////////////RESETING THE BODY TO HAVE NO CARDS AND REMOVE THE TIMER DANGER CLASS
+            cardContainer.innerHTML = "";
+            clockBtn.classList.remove("danger");
+            ///////////////////REMOVING THE WINNING VIDEO
             winner.remove();
             clearInterval(winnerTimer);
             /////////////////////RESET THE BUTTONS AND STYLES BACK TO NORMAL
@@ -227,8 +231,8 @@ difficutlyBtns.forEach((item) => {
       ////////////////////////////////////////////////////////////////IF USER HAS 10 SECONDS LEFT TURN TIMER TO RED
       if (timeLeft < 10) {
         clock.innerText = `00:0${timeLeft}`;
-        clockBtn.classList.add("btn-outline-danger");
-        clockBtn.classList.remove("btn-outline-light");
+        clockBtn.classList.remove("starting");
+        clockBtn.classList.add("danger");
       }
 
       ////////////////////////////////////////////////////////////////IF USER HAS LOST
@@ -243,9 +247,13 @@ difficutlyBtns.forEach((item) => {
         clearInterval(timer);
         body.prepend(loser);
 
+        //////////////////////////////////////////////////////////////TIMER TO REMOVE THE LOST VIDEO AFTER A SECOND
+
         let loserTimer = setInterval(() => {
           loserCount++;
-
+          ///////////////////RESETING THE BODY TO HAVE NO cards
+          cardContainer.innerHTML = "";
+          ///////////////////REMOVING THE LOSING VIDEO AND CLEARING THE TIMER
           if (loserCount === 2) {
             loser.remove();
             clearInterval(loserTimer);
@@ -256,8 +264,8 @@ difficutlyBtns.forEach((item) => {
         diff1.style.pointerEvents = "auto";
         diff2.style.pointerEvents = "auto";
         diff3.style.pointerEvents = "auto";
-        clockBtn.classList.add("btn-outline-light");
-        clockBtn.classList.remove("btn-outline-danger");
+        clockBtn.classList.remove("danger");
+        clockBtn.classList.remove("starting");
         timePassed = 0;
         timeLeft = TIME_LIMIT;
       }
