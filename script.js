@@ -1,7 +1,6 @@
 /////////////////////////////////////////////////////////////////GLOBAL VARIABLES
 const cardContainer = document.querySelector(".card-container");
 let pair = [];
-let highScore = 0;
 let firstCard;
 let secondCard;
 let firstKey;
@@ -14,11 +13,11 @@ let numFliped = 0;
 cardContainer.addEventListener("click", function (e) {
   /////////////////////////////////////////////////////////////////LOCAL VARIABLES
 
-  let dataNick = e.target.dataset.nick;
-  let name = e.target.dataset.name;
-  let card = e.target;
-  let parent = e.target.parentElement.parentElement;
-  let children = parent.children;
+  const dataNick = e.target.dataset.nick;
+  const name = e.target.dataset.name;
+  const card = e.target;
+  const parent = e.target.parentElement.parentElement;
+  const children = parent.children;
 
   /////////////////////////////////////////////////////////////////CONDITIONALS TO ONLY LET THE CARDS BE SELECTED TO FLIP
 
@@ -95,26 +94,52 @@ cardContainer.addEventListener("click", function (e) {
     pair[1] !== "undefined"
   ) {
     pair = [];
-    highScore++;
   }
 });
 
 ///////////////////////////////////////////////////////////////TIMER
 
-let difficutlyBtns = document.querySelectorAll(".difficulty");
+const difficutlyBtns = document.querySelectorAll(".difficulty");
 difficutlyBtns.forEach((item) => {
   item.addEventListener("click", (e) => {
+    ////////////////////////////////////////////////////////////////SETTING UP VARIABLES FOR SESSION STORAGE
+    let easyScore = sessionStorage.getItem("easyScore");
+    let mediumScore = sessionStorage.getItem("mediumScore");
+    let hardScore = sessionStorage.getItem("hardScore");
+    let topTime = document.querySelector(".top-time");
+
+    if (e.target.classList.contains("easy")) {
+      if (easyScore === null) {
+        topTime.innerText = `TOP TIME:        `;
+      } else {
+        topTime.innerText = `TOP TIME: ${easyScore}sec`;
+      }
+    }
+    if (e.target.classList.contains("medium")) {
+      if (mediumScore === null) {
+        topTime.innerText = `TOP TIME:        `;
+      } else {
+        topTime.innerText = `TOP TIME: ${mediumScore}sec`;
+      }
+    }
+    if (e.target.classList.contains("hard")) {
+      if (hardScore === null) {
+        topTime.innerText = `TOP TIME:        `;
+      } else {
+        topTime.innerText = `TOP TIME: ${hardScore}sec`;
+      }
+    }
     ////////////////////////////////////////////////////////////////DISABLING THE ABILITY TO CLICK THE BUTTONS AND RESTART TIMER
-    let diff1 = document.querySelector(".diff1");
-    let diff2 = document.querySelector(".diff2");
-    let diff3 = document.querySelector(".diff3");
+    const diff1 = document.querySelector(".diff1");
+    const diff2 = document.querySelector(".diff2");
+    const diff3 = document.querySelector(".diff3");
 
     diff1.style.pointerEvents = "none";
     diff2.style.pointerEvents = "none";
     diff3.style.pointerEvents = "none";
     ////////////////////////////////////////////////////////////////MAIN TIMER VARIABLES
-    let clock = document.getElementById("timer-label");
-    let clockBtn = document.querySelector(".timer-btn");
+    const clock = document.getElementById("timer-label");
+    const clockBtn = document.querySelector(".timer-btn");
     let TIME_LIMIT;
     let timePassed = 0;
     let timeLeft = TIME_LIMIT;
@@ -130,10 +155,10 @@ difficutlyBtns.forEach((item) => {
       TIME_LIMIT = 60;
       clock.innerText = "01:00";
     }
-
+    clockBtn.classList.add("starting");
     ////////////////////////////////////////////////////////////TIMER INTERVAL BEING CALLED EVERY SECOND
 
-    let timer = setInterval(() => {
+    const timer = setInterval(() => {
       // The amount of time passed increments by one
       timePassed = timePassed += 1;
       timeLeft = TIME_LIMIT - timePassed;
@@ -141,29 +166,56 @@ difficutlyBtns.forEach((item) => {
       clock.innerText = `00:${timeLeft}`;
 
       ////////////////////////////////////////////////////////////////IF USER HAS WON
-      let body = document.querySelector("body");
+      const body = document.querySelector("body");
+      const winner = document.createElement("div");
+      const cards = document.querySelectorAll(".card-box");
 
-      let winner = document.createElement("div");
+      let flipCount = 0;
+      let winnerCount = 0;
+
       winner.innerHTML =
         "<video src='images/winner.mp4' autoplay poster='posterimage.jpg'></video>";
       winner.classList.add("loser");
 
-      let cards = document.querySelectorAll(".card-box");
-
-      let winnerCount = 0;
-
-      let flipCount = 0;
       for (var card of cards) {
         if (card.classList.contains("flip")) flipCount++;
       }
       if (flipCount === cards.length) {
+        /////////////////////ADD WINNING VIDEO AND CLEAR THE MAIN TIMER
         body.prepend(winner);
         clearInterval(timer);
-        let winnerTimer = setInterval(() => {
+        /////////////////////UPDATE SESSION STORAGE
+        let time = timePassed;
+
+        if (e.target.classList.contains("easy")) {
+          if (easyScore === null || time < easyScore) {
+            sessionStorage.setItem("easyScore", `${time}`);
+            topTime.innerText = `TOP TIME: ${time}sec`;
+          }
+        }
+        if (e.target.classList.contains("medium")) {
+          if (mediumScore === null || time < mediumScore) {
+            sessionStorage.setItem("mediumScore", `${time}`);
+            topTime.innerText = `TOP TIME: ${time}sec`;
+          }
+        }
+        if (e.target.classList.contains("hard")) {
+          if (hardScore === null || time < hardScore) {
+            sessionStorage.setItem("hardScore", `${time}`);
+            topTime.innerText = `TOP TIME: ${time}sec`;
+          }
+        }
+        /////////////////////START THE WINNING INTERVAL TIMER TO REMOVE THE VIDEO AFTER 2 SECONDS
+        const winnerTimer = setInterval(() => {
           winnerCount++;
           if (winnerCount === 2) {
+            ///////////////////RESETING THE BODY TO HAVE NO CARDS AND REMOVE THE TIMER DANGER CLASS
+            cardContainer.innerHTML = "";
+            clockBtn.classList.remove("danger");
+            ///////////////////REMOVING THE WINNING VIDEO
             winner.remove();
             clearInterval(winnerTimer);
+            /////////////////////RESET THE BUTTONS AND STYLES BACK TO NORMAL
             diff1.style.pointerEvents = "auto";
             diff2.style.pointerEvents = "auto";
             diff3.style.pointerEvents = "auto";
@@ -177,12 +229,12 @@ difficutlyBtns.forEach((item) => {
       ////////////////////////////////////////////////////////////////IF USER HAS 10 SECONDS LEFT TURN TIMER TO RED
       if (timeLeft < 10) {
         clock.innerText = `00:0${timeLeft}`;
-        clockBtn.classList.add("btn-outline-danger");
-        clockBtn.classList.remove("btn-outline-light");
+        clockBtn.classList.remove("starting");
+        clockBtn.classList.add("danger");
       }
 
       ////////////////////////////////////////////////////////////////IF USER HAS LOST
-      let loser = document.createElement("div");
+      const loser = document.createElement("div");
       let loserCount = 0;
 
       loser.innerHTML =
@@ -193,9 +245,13 @@ difficutlyBtns.forEach((item) => {
         clearInterval(timer);
         body.prepend(loser);
 
-        let loserTimer = setInterval(() => {
-          loserCount++;
+        //////////////////////////////////////////////////////////////TIMER TO REMOVE THE LOST VIDEO AFTER A SECOND
 
+        const loserTimer = setInterval(() => {
+          loserCount++;
+          ///////////////////RESETING THE BODY TO HAVE NO cards
+          cardContainer.innerHTML = "";
+          ///////////////////REMOVING THE LOSING VIDEO AND CLEARING THE TIMER
           if (loserCount === 2) {
             loser.remove();
             clearInterval(loserTimer);
@@ -206,8 +262,8 @@ difficutlyBtns.forEach((item) => {
         diff1.style.pointerEvents = "auto";
         diff2.style.pointerEvents = "auto";
         diff3.style.pointerEvents = "auto";
-        clockBtn.classList.add("btn-outline-light");
-        clockBtn.classList.remove("btn-outline-danger");
+        clockBtn.classList.remove("danger");
+        clockBtn.classList.remove("starting");
         timePassed = 0;
         timeLeft = TIME_LIMIT;
       }
@@ -215,12 +271,13 @@ difficutlyBtns.forEach((item) => {
   });
 });
 
-///////////////////////////////////////////////////////////////EASY/MEDIUM/HARD
+///////////////////////////////////////////////////////////////EASY/MEDIUM/HARD BUTTONS LOADING ON CLICK FUNCTION
 
-let cardLoader = function (e) {
+const cardLoader = function (e) {
   let testing;
   let inputs = [];
 
+  //////////////////////////////////////////////EASY BUTTON LOOP
   if (e.target.classList.contains("easy")) {
     cardContainer.innerText = "";
     for (var i = 1; i < 5; i++) {
@@ -241,6 +298,7 @@ let cardLoader = function (e) {
         </div>`,
       });
     }
+    //////////////////////////////////////////////MEDIUM BUTTON LOOP
   } else if (e.target.classList.contains("medium")) {
     cardContainer.innerText = "";
     for (var i = 1; i < 9; i++) {
@@ -261,6 +319,7 @@ let cardLoader = function (e) {
           </div>`,
       });
     }
+    //////////////////////////////////////////////HARD BUTTON LOOP
   } else if (e.target.classList.contains("hard")) {
     cardContainer.innerText = "";
     for (var i = 1; i < 13; i++) {
@@ -282,7 +341,7 @@ let cardLoader = function (e) {
       });
     }
   }
-
+  //////////////////////////////////////////////RANDOMIZATION LOOP
   let m;
   let t;
   let j;
@@ -297,6 +356,7 @@ let cardLoader = function (e) {
     inputs[j] = t;
   }
 
+  //////////////////////////////////////////////POPULATE LOOP
   for (var i = 0; i < inputs.length; i++) {
     let div = document.createElement("div");
     div.classList.add("card-box");
@@ -306,9 +366,10 @@ let cardLoader = function (e) {
   }
 };
 
-let easyBtn = document.querySelector(".easy");
+//////////////////////////////////////////////CLICK EVENT IMPLEMENTING THE CARDLOADER FUNCTION
+const easyBtn = document.querySelector(".easy");
 easyBtn.addEventListener("click", cardLoader);
-let mediumBtn = document.querySelector(".medium");
+const mediumBtn = document.querySelector(".medium");
 mediumBtn.addEventListener("click", cardLoader);
-let hardBtn = document.querySelector(".hard");
+const hardBtn = document.querySelector(".hard");
 hardBtn.addEventListener("click", cardLoader);

@@ -6,88 +6,118 @@
 
 .header-container {
   display: flex;
-  justify-content: center;
   align-items: center;
   width: 100vw;
   height: 30vh;
 }
 
+.left-side {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.right-side {
+  display: flex;
+  justify-content: flex-start;
+}
+
+/* ////////////////////////LOGO///////////////////// */
+
 .logo {
+  flex: 1;
   font-family: "Permanent Marker", cursive;
-  font-size: 0px;
+  font-size: 15px;
   text-align: center;
   color: #fff;
-  margin: 10px 40px 0;
+  margin: -50px 20px -50px;
 }
 
 .cage {
-  font-size: 1.5em;
-  clip-path: inset(20px 0);
+  font-size: 60px;
+  /* clip-path: inset(20px 0); */
 }
 
-/* .header {
+/* ////////////////////////BUTTONS///////////////////// */
+
+.btn {
   flex: 1;
-  flex-wrap: wrap;
-  width: 10px;
-  height: 40px;
+  width: 100px;
+  height: 50px;
   margin: 0 40px;
-  background-color: rgba(0, 0, 0, 0);
-  border: 2px solid #c355f5;
+  border: 1px solid #fff;
   border-radius: 5px;
-  color: green;
-  padding: 12px 20px;
-  font-size: 15px;
-} */
-
-/* .header.easy {
-  color: red;
+  color: #fff;
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+  font-size: 30px;
 }
 
-.header.medium {
-  color: red;
+.easy {
+  width: 75px;
+  height: 40px;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 300;
 }
 
-.header.hard {
-  color: red;
+.easy:hover {
+  color: black;
+  background-color: #fff;
 }
 
-.header.logo {
-  color: red;
-  flex: 3;
+.medium {
+  width: 100px;
+  height: 40px;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 300;
 }
 
-.header.timer {
-  color: red;
+.medium:hover {
+  color: black;
+  background-color: #fff;
 }
 
-.header.score {
-  color: red;
+.hard {
+  width: 75px;
+  height: 40px;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 300;
 }
 
-.header.reset {
-  color: red;
+.hard:hover {
+  color: black;
+  background-color: #fff;
 }
 
-.header:hover {
-  background-color: #512b58;
-  opacity: 0.1;
-} */
+.top-time {
+  width: 250px;
+}
+
+.starting {
+  color: #21bf73;
+  border: 1px solid #21bf73;
+}
+
+.danger {
+  color: #9a1f40;
+  border: 1px solid #9a1f40;
+}
 
 /* ////////////////////////CARD CONTAINER///////////////////// */
 .card-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, 150px);
-  /* grid-gap: 0px; */
+  grid-gap: 20px 0;
   justify-content: center;
 }
 
 .card-box {
   position: relative;
-  width: 150px;
-  height: 150px;
-  /* max-width: 300px;
-  max-height: 300px; */
-  /* object-fit: scale-down; */
+  width: 120px;
+  height: 120px;
   transition: all 0.5s ease;
   transform-style: preserve-3d;
 }
@@ -100,9 +130,9 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 150px;
-  height: 150px;
-  clip-path: inset(20px);
+  width: 120px;
+  height: 120px;
+  clip-path: inset(10px);
   background: #fff;
   backface-visibility: hidden;
 }
@@ -111,24 +141,20 @@
   position: absolute;
   top: 0;
   left: 0;
-  /* width: 200px;
-  height: 200px;
-  max-width: 300px;
-  max-height: 300px; */
   object-fit: scale-down;
-  clip-path: inset(20px);
+  clip-path: inset(10px);
   backface-visibility: hidden;
   transform: rotateY(180deg);
 }
 
 img {
-  width: 150px;
-  height: 150px;
+  width: 120px;
+  height: 120px;
   max-width: 200px;
   max-height: 200px;
   object-fit: scale-down;
 }
-
+/* ////////////////////////VIDEO///////////////////// */
 .loser {
   position: absolute;
   z-index: 1;
@@ -139,22 +165,3 @@ img {
 }
 
 /* ////////////////////////////////////////////////////////// */
-
-.base-timer__label {
-  /* position: absolute; */
-
-  /* Size should match the parent container */
-  width: 300px;
-  height: 300px;
-
-  /* Keep the label aligned to the top */
-  /* top: 0; */
-
-  /* Create a flexible box that centers content vertically and horizontally */
-  /* display: flex;
-  align-items: center;
-  justify-content: center; */
-
-  /* Sort of an arbitrary number; adjust to your liking */
-  font-size: 48px;
-}

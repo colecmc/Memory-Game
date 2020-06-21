@@ -10,51 +10,51 @@
     <title>Memory Game!</title>
     <link rel="stylesheet" href="style.css" />
     <link
+      href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap"
       rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
-      crossorigin="anonymous"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
       rel="stylesheet"
     />
   </head>
   <body>
     <div class="header-container">
-      <div class="header outline difficulty diff1">
-        <button type="button" class="btn btn-outline-warning easy">
-          EASY
-        </button>
+      <div class="left-side">
+        <div class="header outline difficulty diff1">
+          <button type="button" class="btn btn-outline-warning easy">
+            EASY
+          </button>
+        </div>
+        <div class="header outline difficulty diff2">
+          <button type="button" class="btn btn-outline-warning medium">
+            MEDIUM
+          </button>
+        </div>
+        <div class="header outline difficulty diff3">
+          <button type="button" class="btn btn-outline-warning hard">
+            HARD
+          </button>
+        </div>
       </div>
-      <div class="header outline difficulty diff2">
-        <button type="button" class="btn btn-outline-warning medium">
-          MEDIUM
-        </button>
-      </div>
-      <div class="header outline difficulty diff3">
-        <button type="button" class="btn btn-outline-warning hard">
-          HARD
-        </button>
-      </div>
-      <div class="header logo outline">
+
+      <div class="header logo">
         <h1>THE<br /><span class="cage">CAGE</span><br />MATCH</h1>
       </div>
 
-      <div class="header timer-clock outline">
-        <button
-          type="button"
-          class="timer-btn btn btn-lg btn-outline-info"
-          disabled
-        >
-          <span id="timer-label">00:00</span>
-        </button>
+      <div class="right-side">
+        <div class="header timer-clock">
+          <button type="button" class="timer-btn btn">
+            <span id="timer-label">00:00</span>
+          </button>
+        </div>
+
+        <div class="header score outline">
+          <button type="button" class="top-time btn">
+            TOP TIME:
+          </button>
+        </div>
       </div>
-      <!-- <div class="header score outline">
-        <button type="button" class="btn btn-lg btn-info" disabled>
-          TOP TIME: 00:00
-        </button>
-      </div> -->
     </div>
 
     <div class="card-container" data-name="container"></div>
