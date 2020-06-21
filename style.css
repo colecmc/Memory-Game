@@ -13,16 +13,17 @@
 }
 
 .logo {
+  flex: 1;
   font-family: "Permanent Marker", cursive;
-  font-size: 0px;
+  font-size: 15px;
   text-align: center;
   color: #fff;
-  margin: 10px 40px 0;
+  margin: -50px 20px -50px;
 }
 
 .cage {
-  font-size: 1.5em;
-  clip-path: inset(20px 0);
+  font-size: 60px;
+  /* clip-path: inset(20px 0); */
 }
 
 .btn {
@@ -38,22 +39,46 @@
   font-size: 30px;
 }
 
-.top-time {
+.easy {
+  width: 75px;
+  height: 40px;
   color: pink;
+  font-size: 20px;
+  font-weight: 300;
+}
+
+.medium {
+  width: 100px;
+  height: 40px;
+  color: pink;
+  font-size: 20px;
+  font-weight: 300;
+}
+
+.hard {
+  width: 75px;
+  height: 40px;
+  color: pink;
+  font-size: 20px;
+  font-weight: 300;
+}
+
+.top-time {
+  width: 250px;
 }
 
 /* ////////////////////////CARD CONTAINER///////////////////// */
 .card-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, 150px);
-  /* grid-gap: 0px; */
+  grid-gap: 20px 0;
   justify-content: center;
 }
 
 .card-box {
   position: relative;
-  width: 150px;
-  height: 150px;
+  width: 120px;
+  height: 120px;
   transition: all 0.5s ease;
   transform-style: preserve-3d;
 }
@@ -66,9 +91,9 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 150px;
-  height: 150px;
-  clip-path: inset(20px);
+  width: 120px;
+  height: 120px;
+  clip-path: inset(10px);
   background: #fff;
   backface-visibility: hidden;
 }
@@ -78,14 +103,14 @@
   top: 0;
   left: 0;
   object-fit: scale-down;
-  clip-path: inset(20px);
+  clip-path: inset(10px);
   backface-visibility: hidden;
   transform: rotateY(180deg);
 }
 
 img {
-  width: 150px;
-  height: 150px;
+  width: 120px;
+  height: 120px;
   max-width: 200px;
   max-height: 200px;
   object-fit: scale-down;
