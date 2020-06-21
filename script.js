@@ -154,7 +154,7 @@ difficutlyBtns.forEach((item) => {
       TIME_LIMIT = 45;
       clock.innerText = "00:45";
     } else if (e.target.classList.contains("hard")) {
-      TIME_LIMIT = 160;
+      TIME_LIMIT = 60;
       clock.innerText = "01:00";
     }
 
