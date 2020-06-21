@@ -6,10 +6,20 @@
 
 .header-container {
   display: flex;
-  justify-content: center;
   align-items: center;
   width: 100vw;
   height: 30vh;
+}
+
+.left-side {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.right-side {
+  display: flex;
+  justify-content: flex-start;
 }
 
 .logo {
@@ -42,29 +52,54 @@
 .easy {
   width: 75px;
   height: 40px;
-  color: pink;
+  color: #fff;
   font-size: 20px;
   font-weight: 300;
+}
+
+.easy:hover {
+  color: black;
+  background-color: #fff;
 }
 
 .medium {
   width: 100px;
   height: 40px;
-  color: pink;
+  color: #fff;
   font-size: 20px;
   font-weight: 300;
+}
+
+.medium:hover {
+  color: black;
+  background-color: #fff;
 }
 
 .hard {
   width: 75px;
   height: 40px;
-  color: pink;
+  color: #fff;
   font-size: 20px;
   font-weight: 300;
 }
 
+.hard:hover {
+  color: black;
+  background-color: #fff;
+}
+
 .top-time {
   width: 250px;
+}
+
+.starting {
+  color: #21bf73;
+  border: 1px solid #21bf73;
+}
+
+.danger {
+  color: #9a1f40;
+  border: 1px solid #9a1f40;
 }
 
 /* ////////////////////////CARD CONTAINER///////////////////// */

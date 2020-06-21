@@ -109,7 +109,7 @@ difficutlyBtns.forEach((item) => {
     let mediumScore = sessionStorage.getItem("mediumScore");
     let hardScore = sessionStorage.getItem("hardScore");
     let topTime = document.querySelector(".top-time");
-    console.log(e.target.classList);
+
     if (e.target.classList.contains("easy")) {
       if (easyScore === null) {
         topTime.innerText = `TOP TIME:        `;
@@ -157,7 +157,7 @@ difficutlyBtns.forEach((item) => {
       TIME_LIMIT = 60;
       clock.innerText = "01:00";
     }
-
+    clockBtn.classList.add("starting");
     ////////////////////////////////////////////////////////////TIMER INTERVAL BEING CALLED EVERY SECOND
 
     let timer = setInterval(() => {
@@ -227,8 +227,8 @@ difficutlyBtns.forEach((item) => {
       ////////////////////////////////////////////////////////////////IF USER HAS 10 SECONDS LEFT TURN TIMER TO RED
       if (timeLeft < 10) {
         clock.innerText = `00:0${timeLeft}`;
-        clockBtn.classList.add("btn-outline-danger");
-        clockBtn.classList.remove("btn-outline-light");
+        clockBtn.classList.remove("starting");
+        clockBtn.classList.add("danger");
       }
 
       ////////////////////////////////////////////////////////////////IF USER HAS LOST
@@ -256,8 +256,8 @@ difficutlyBtns.forEach((item) => {
         diff1.style.pointerEvents = "auto";
         diff2.style.pointerEvents = "auto";
         diff3.style.pointerEvents = "auto";
-        clockBtn.classList.add("btn-outline-light");
-        clockBtn.classList.remove("btn-outline-danger");
+        clockBtn.classList.remove("danger");
+        clockBtn.classList.remove("starting");
         timePassed = 0;
         timeLeft = TIME_LIMIT;
       }
