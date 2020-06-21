@@ -211,6 +211,10 @@ difficutlyBtns.forEach((item) => {
         let winnerTimer = setInterval(() => {
           winnerCount++;
           if (winnerCount === 2) {
+            ///////////////////RESETING THE BODY TO HAVE NO CARDS AND REMOVE THE TIMER DANGER CLASS
+            cardContainer.innerHTML = "";
+            clockBtn.classList.remove("danger");
+            ///////////////////REMOVING THE WINNING VIDEO
             winner.remove();
             clearInterval(winnerTimer);
             /////////////////////RESET THE BUTTONS AND STYLES BACK TO NORMAL
@@ -243,9 +247,13 @@ difficutlyBtns.forEach((item) => {
         clearInterval(timer);
         body.prepend(loser);
 
+        //////////////////////////////////////////////////////////////TIMER TO REMOVE THE LOST VIDEO AFTER A SECOND
+
         let loserTimer = setInterval(() => {
           loserCount++;
-
+          ///////////////////RESETING THE BODY TO HAVE NO cards
+          cardContainer.innerHTML = "";
+          ///////////////////REMOVING THE LOSING VIDEO AND CLEARING THE TIMER
           if (loserCount === 2) {
             loser.remove();
             clearInterval(loserTimer);
